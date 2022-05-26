@@ -28,7 +28,7 @@ npm install -D dotenv-cli nodemon
 
 
 --------------------------------------------------------------------------------
-Configuration
+JS Configuration
 
 Generate a strong secret:
 openssl rand -base64 10
@@ -37,3 +37,21 @@ Create a js config folder and export each environment variable
 
 
 --------------------------------------------------------------------------------
+Sequelize Configuration
+
+Create .sequelizerc file with relevant exports
+
+Initialize sequelize to the db folder
+npx sequelize init
+
+Refactor backend/config/database.js to allow loading the database configuration environment variables from the .env file into config/index.js
+
+Create db user with same credentials as in .env
+psql -c "CREATE USER <username> PASSWORD '<password>' CREATEDB"
+
+Create the database using sequelize-cli
+npx dotenv sequelize db:create
+
+
+--------------------------------------------------------------------------------
+Express Setup
