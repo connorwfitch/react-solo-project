@@ -1,1 +1,32 @@
-Foo
+--------------------------------------------------------------------------------
+Create React App
+npx create-react-app . --template @appacademy/react-v17 --use-npm
+
+Install Dependencies
+  js-cookie - extracts cookies
+  react-redux - React components and hooks for Redux
+  react-router-dom@^5 - routing for React
+  redux - Redux
+  redux-thunk - add Redux thunk
+
+npm install js-cookie react-redux react-router-dom@^5 redux redux-thunk
+
+InstallDev Dependencies
+  redux-logger - log Redux actions in the browser's dev tools console
+npm install -D redux-logger
+
+
+--------------------------------------------------------------------------------
+Setting up redux store
+
+Make a folder in frontend/src called store and add an index.js file
+  Create a root reducer
+  Instantiate an enhancer and apply middleware according to which environment is being used
+  Make a configureStore function and export it
+
+
+--------------------------------------------------------------------------------
+Redux provider and browser router
+
+Invoke configureStore and pass it into a Provider functional component that wraps the BrowserRouter and App
+Render all of that in a Root functional component
