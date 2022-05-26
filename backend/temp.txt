@@ -190,3 +190,13 @@ Add the following routes:
   Logout: DELETE /api/session
   Signup: POST /api/users
   Get session user: GET /api/session
+
+
+--------------------------------------------------------------------------------
+Validating Request Bodies
+
+Create validation.js in backend/utils
+  create handleValidationErrors function and export it
+
+
+
