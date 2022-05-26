@@ -178,3 +178,15 @@ User auth middleware
     restoreUser
     requireAuth
   Test the middleware functions
+
+
+--------------------------------------------------------------------------------
+User Auth Routes
+
+Create session.js, users.js files in backend/routes/api
+
+Add the following routes:
+  Login: POST /api/session
+  Logout: DELETE /api/session
+  Signup: POST /api/users
+  Get session user: GET /api/session
