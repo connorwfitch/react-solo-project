@@ -78,3 +78,20 @@ Create bin folder with www file
 
 Test the server
   Add scripts to package.json
+
+
+--------------------------------------------------------------------------------
+API Routes
+
+Create api folder in backend/routes with an index.js
+  Create a router therein and export and use it in main router file
+
+Create test route and test using a fetch request in the devtools console
+fetch('/api/test', {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "XSRF-TOKEN": `<value of XSRF-TOKEN cookie>`
+  },
+  body: JSON.stringify({ hello: 'world' })
+}).then(res => res.json()).then(data => console.log(data));
