@@ -32,7 +32,7 @@ function LoginFormPage() {
   return (
     <form onSubmit={handleSubmit}>
       <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        {errors.map((error, i) => <li key={i}>{error}</li>)}
       </ul>
       <label>
         Username or Email
@@ -52,7 +52,7 @@ function LoginFormPage() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button type="submit" disabled={!password || !credential}>Log In</button>
     </form>
   );
 }
