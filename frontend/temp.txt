@@ -45,3 +45,6 @@ Add another route for when the environment isn't production
 
 define and export restoreCSRF function in frontend/src/store/csrf.js
 Call csrf functions in frontend/src/index.js when not in production
+
+--------------------------------------------------------------------------------
+Session actions and reducer
