@@ -95,3 +95,12 @@ fetch('/api/test', {
   },
   body: JSON.stringify({ hello: 'world' })
 }).then(res => res.json()).then(data => console.log(data));
+
+
+--------------------------------------------------------------------------------
+Server Error Handling
+
+Add the following error handlers
+  Resource Not Found
+  Sequelize
+  Error Formatter
