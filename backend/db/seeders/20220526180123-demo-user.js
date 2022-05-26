@@ -1,54 +1,31 @@
 'use strict';
-const { Validator } = require('sequelize');
+const bcrypt = require('bcryptjs');
 
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 30],
-        isNotEmail(value) {
-          if (Validator.isEmail(value)) {
-            throw new Error('Cannot be an email.');
-          }
-        }
-      }
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 256]
-      }
-    },
-    hashedPassword: {
-      type: DataTypes.STRING.BINARY,
-      allowNull: false,
-      validate: {
-        len: [60, 60]
-      }
-    }
-  },
-    {
-      defaultScope: {
-        attributes: {
-          exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt']
-        }
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert('Users', [
+      {
+        email: 'demo@user.io',
+        username: 'Demo-lition',
+        hashedPassword: bcrypt.hashSync('password')
       },
-      scopes: {
-        currentUser: {
-          attributes: { exclude: ['hashedPassword'] }
-        },
-        loginUser: {
-          attributes: {}
-        }
+      {
+        email: 'user1@user.io',
+        username: 'FakeUser1',
+        hashedPassword: bcrypt.hashSync('password2')
+      },
+      {
+        email: 'user2@user.io',
+        username: 'FakeUser2',
+        hashedPassword: bcrypt.hashSync('password3')
       }
-    });
+    ], {});
+  },
 
-  User.associate = function (models) {
-    // associations can be defined here
-  };
-
-  return User;
+  down: (queryInterface, Sequelize) => {
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete('Users', {
+      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
+    }, {});
+  }
 };

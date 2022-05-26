@@ -140,4 +140,41 @@ npx dotenv sequelize db:seed:all
 Undo seed
 npx dotenv sequelize db:seed:undo:all
 
-*Model Scopes*
+Model scopes
+  default: exclude hashedPassword, email, createdAt, updatedAt
+  currentUser: exclude hashedPassword
+  loginUser: exclude none
+
+--Login Flow--
+1. login route hit with a req body holding a valid credential (either username or email) and password combination
+2. login handler will look for a User with the input credential in either the username or email columns
+3. the hashedPassword for that found User will be compared with the input password for a match
+4. if match, the login route should send back a JWT in an HTTP-only cookie and a response body
+  - JWT and the body will hold the user's id, username, and email
+
+--Signup Flow--
+1. signup route hit with a req body holding a username, email, and password
+2. signup handler creates a User with the corresponding username, email, and hashedPassword
+3. upon successful creation, the signup route should send back a JWT in an HTTP-only cookie and a response body
+  - JWT and the body will hold the user's id, username, and email
+
+--Logout Flow--
+1. logout route hit with a request
+2. logout handler will remove teh JWT cookie set by the login or signup routes and return a JSON success message
+
+Model methods (for API routes to interact with)
+  Instance methods
+    toSafeObject - returns an object with only the user instance information safe for JWTs
+    validatePassword
+  Static methods
+    getCurrentUserById
+    login
+    signup
+
+User auth middleware
+  Create utils folder with auth.js
+  Create the following utility functions for auth
+    setTokenCookie
+    restoreUser
+    requireAuth
+  Test the middleware functions
