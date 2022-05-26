@@ -197,6 +197,6 @@ Validating Request Bodies
 
 Create validation.js in backend/utils
   create handleValidationErrors function and export it
-
-
+Import it into backend/routes/api/session.js
+  Use it, along with validateLogin to do exactly that
 
