@@ -30,3 +30,18 @@ Redux provider and browser router
 
 Invoke configureStore and pass it into a Provider functional component that wraps the BrowserRouter and App
 Render all of that in a Root functional component
+
+
+--------------------------------------------------------------------------------
+Wrapping fetch requests with csrf
+
+Add a proxy to package.json
+Add a csrf.js file to frontend/src/store
+
+In the backend, serve the index,html file at the / route and any routes that don't start with /api
+  Also attach the XSRF-TOKEN cookie to the response
+Serve the static files in the frontend/build folder using the express.static middleware
+Add another route for when the environment isn't production
+
+define and export restoreCSRF function in frontend/src/store/csrf.js
+Call csrf functions in frontend/src/index.js when not in production
