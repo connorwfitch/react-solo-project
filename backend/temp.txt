@@ -104,3 +104,40 @@ Add the following error handlers
   Resource Not Found
   Sequelize
   Error Formatter
+
+
+--------------------------------------------------------------------------------
+User Creation and Auth
+
+Create a Users table with Sequelize with the following schema:
+  id: integer, not null primary key
+  username: string, not null, indexed, unique, max 30 characters
+  email: string, not null, indexed, unique, max 256 characters
+  hashedPassword: binary string, not null
+  createdAt: datetime, not null, default value of now()
+  updatedAt: datetime, not null, default value of now()
+
+Generate migration and model file
+npx sequelize model:generate --name User --attributes username:string,email:string,hashedPassword:string
+
+Apply above constraints in the migration file
+
+Migrate the Users table
+npx dotenv sequelize db:migrate
+
+Undo the migration
+npx dotenv sequelize db:migrate:undo
+
+In Users model add the following model-level constraints
+  username: string, not null, unique, min 4 characters, max 30 characters, isNotEmail
+  email: string, not null, unique, min 3 characters, max 256 characters, isEmail
+  hashedPassword: binary string, not null, min and max 60 characters
+
+Generate and apply demo users seed
+npx sequelize seed:generate --name demo-user
+npx dotenv sequelize db:seed:all
+
+Undo seed
+npx dotenv sequelize db:seed:undo:all
+
+*Model Scopes*
