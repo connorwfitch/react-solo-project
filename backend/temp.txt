@@ -55,3 +55,26 @@ npx dotenv sequelize db:create
 
 --------------------------------------------------------------------------------
 Express Setup
+
+Conducted in app.js
+  Import and use various middleware modules
+    - morgan
+    - cookie-parser
+    - express.json
+    - cors (when not in production)
+    - helmet
+    - csurf
+
+
+--------------------------------------------------------------------------------
+Routes Setup
+
+Create routes folder with index.js
+  Create a test router and export it
+
+Create bin folder with www file
+  Add code for checking database connection before starting the app
+  Add code to start listening for connections
+
+Test the server
+  Add scripts to package.json
