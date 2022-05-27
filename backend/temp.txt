@@ -204,3 +204,9 @@ Import it into backend/routes/api/users.js
 
 
 --------------------------------------------------------------------------------
+Models and Migrations
+npx sequelize model:generate --name Story --attributes title:string,headerImgUrl:text,content:text,userId:integer
+npx sequelize model:generate --name Comment --attributes title:string,content:text,userId:integer,storyId:integer
+npx sequelize model:generate --name Like --attributes userId:integer,storyId:integer
+npx sequelize model:generate --name Topic --attributes name:string
+npx sequelize model:generate --name StoryTopic --attributes topicId:integer,storyId:integer
