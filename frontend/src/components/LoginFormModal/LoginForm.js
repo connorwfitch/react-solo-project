@@ -1,38 +1,33 @@
 // External modules
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 // Internal modules
-import * as sessionActions from '../../store/session';
-import './LoginForm.css';
+import * as sessionActions from "../../store/session";
 
-
-function LoginFormPage() {
+function LoginForm() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
-  const [credential, setCredential] = useState('');
-  const [password, setPassword] = useState('');
+  const [credential, setCredential] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
-  if (sessionUser) return (
-    <Redirect to="/" />
-  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password }))
-      .catch(async (res) => {
+    return dispatch(sessionActions.login({ credential, password })).catch(
+      async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
-      });
-  }
+      }
+    );
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <ul>
-        {errors.map((error, i) => <li key={i}>{error}</li>)}
+        {errors.map((error, i) => (
+          <li key={i}>{error}</li>
+        ))}
       </ul>
       <label>
         Username or Email
@@ -52,9 +47,9 @@ function LoginFormPage() {
           required
         />
       </label>
-      <button type="submit" disabled={!password || !credential}>Log In</button>
+      <button type="submit">Log In</button>
     </form>
   );
 }
 
-export default LoginFormPage;
+export default LoginForm;

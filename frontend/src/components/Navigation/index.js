@@ -1,10 +1,12 @@
-// External Modules
+// External modules
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // Internal modules
 import ProfileButton from './ProfileButton';
+import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -18,23 +20,17 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <li>
-          <NavLink to="/login">Log In</NavLink>
-        </li>
-        <li>
-          <NavLink to="/signup">Sign Up</NavLink>
-        </li>
+        <LoginFormModal />
+        <SignupFormModal />
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-      </li>
-        {isLoaded && sessionLinks}
-    </ul>
+    <div>
+      <NavLink exact to="/">Home</NavLink>
+      {isLoaded && sessionLinks}
+    </div>
   );
 }
 

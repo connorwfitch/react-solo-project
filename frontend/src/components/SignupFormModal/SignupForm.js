@@ -1,24 +1,17 @@
 // External modules
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 // Internal modules
-import * as sessionActions from '../../store/session';
-import './SignupForm.css';
+import * as sessionActions from "../../store/session";
 
-function SignupFormPage() {
+function SignupForm() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
-  if (sessionUser) return (
-    <Redirect to="/" />
-  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,7 +29,9 @@ function SignupFormPage() {
   return (
     <form onSubmit={handleSubmit}>
       <ul>
-        {errors.map((error, i) => <li key={i}>{error}</li>)}
+        {errors.map((error, i) => (
+          <li key={i}>{error}</li>
+        ))}
       </ul>
       <label>
         Username
@@ -74,9 +69,9 @@ function SignupFormPage() {
           required
         />
       </label>
-      <button type="submit" disabled={!confirmPassword || !password || !email || !username}>Log In</button>
+      <button type="submit">Sign Up</button>
     </form>
   );
 }
 
-export default SignupFormPage;
+export default SignupForm;
