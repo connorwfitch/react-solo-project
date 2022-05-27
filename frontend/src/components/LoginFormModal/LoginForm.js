@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 // Internal modules
 import * as sessionActions from "../../store/session";
 
-function LoginForm() {
+function LoginForm({ setShowModal }) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -48,6 +48,13 @@ function LoginForm() {
         />
       </label>
       <button type="submit">Log In</button>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          setShowModal(false);
+        }}>
+        Cancel
+      </button>
     </form>
   );
 }
