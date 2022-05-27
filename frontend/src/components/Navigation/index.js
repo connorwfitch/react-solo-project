@@ -8,6 +8,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
+import logo from '../../assets/gemiddeldLarge.png';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -27,8 +28,11 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <div>
-      <NavLink exact to="/">Home</NavLink>
+    <div className='navigation'>
+      <NavLink exact to="/">
+        <img src={logo} alt='Gemiddeld' className='nav-logo'>
+        </img>
+      </NavLink>
       {isLoaded && sessionLinks}
     </div>
   );
