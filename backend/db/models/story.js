@@ -14,11 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Story.associate = function(models) {
     Story.belongsTo(models.User, { foreignKey: 'userId' });
-    Story.belongsToMany(models.User, {
-      through: 'Comment',
-      foreignKey: 'storyId',
-      otherKey: 'userId'
-    });
+    Story.hasMany(models.Comment, { foreignKey: 'storyId' });
   };
   return Story;
 };
