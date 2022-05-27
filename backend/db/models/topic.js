@@ -4,7 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {});
   Topic.associate = function(models) {
-    // associations can be defined here
+    Topic.belongsToMany(models.Story, {
+      through: 'StoryTopic',
+      foreignKey: 'topicId',
+      otherKey: 'storyId'
+    });
   };
   return Topic;
 };
