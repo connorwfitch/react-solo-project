@@ -1,6 +1,6 @@
 // External modules
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
@@ -11,6 +11,9 @@ import { ModalProvider } from "./context/Modal";
 import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
+
+const reactContainer = document.getElementById('root');
+const root = createRoot(reactContainer);
 
 const store = configureStore();
 
@@ -34,9 +37,8 @@ function Root() {
   );
 }
 
-ReactDOM.render(
+root.render(
   <React.StrictMode>
     <Root />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
