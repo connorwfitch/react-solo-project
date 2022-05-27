@@ -50,7 +50,12 @@ module.exports = (sequelize, DataTypes) => {
     });
 
   User.associate = function (models) {
-    User.hasMany(models.Story, { foreignKey: 'userId' })
+    User.hasMany(models.Story, { foreignKey: 'userId' });
+    User.belongsToMany(models.Story, {
+      through: 'Comment',
+      foreignKey: 'userId',
+      otherKey: 'storyId'
+    });
   };
 
   // user instance methods
