@@ -7,6 +7,7 @@ const express = require('express');
 // const { User } = require('../../db/models');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const storiesRouter = require('./stories.js');
 
 
 
@@ -19,5 +20,6 @@ const router = express.Router();
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
+router.use('/stories', storiesRouter);
 
 module.exports = router;

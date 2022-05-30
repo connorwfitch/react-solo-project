@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 
 // Internal modules
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Story } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
@@ -57,7 +57,7 @@ const validatePatch = [
 /*
 -------------------ROUTES-------------------
 */
-// POST /api/users (signup)
+// POST /api/users (signup, create a user profile)
 router.post('/', validateSignup, asyncHandler(async (req, res) => {
   const { email, password, username } = req.body;
   const user = await User.signup({ email, username, password });
@@ -69,7 +69,7 @@ router.post('/', validateSignup, asyncHandler(async (req, res) => {
   });
 }));
 
-// GET /api/users
+// GET /api/users (get all users)
 router.get('/', asyncHandler(async (req, res) => {
   const users = await User.findAll();
 
@@ -78,42 +78,45 @@ router.get('/', asyncHandler(async (req, res) => {
   });
 }));
 
-// GET /api/users/:userId
+// GET /api/users/:userId (read a user profile)
 router.get('/:userId', asyncHandler(async (req, res) => {
   const userId = parseInt(req.params.userId, 10);
-  const user = await User.findByPk(userId);
+  const user = await User.findByPk(userId, {
+    include: Story
+  });
 
   return res.json({
     user
   });
 }));
 
-// DELETE /api/users/:userId
-router.delete('/:userId', asyncHandler(async (req, res) => {
-  const userId = parseInt(req.params.userId, 10);
-  const user = await User.findByPk(userId);
-  await user.destroy();
-
-  res.json({ 
-    message: 'Success'
-  });
-}));
-
-// PATCH /api/users/:userId (edit)
-router.post('/', validatePatch, asyncHandler(async (req, res) => {
+// PATCH /api/users/:userId (update a user profile)
+// QUESTION: requireAuth?
+router.patch('/:userId', validatePatch, asyncHandler(async (req, res) => {
   // QUESTION: Offer password update?
   const { email, username, bio, profileImgUrl } = req.body;
   const userId = parseInt(req.params.userId, 10);
   const user = await User.findByPk(userId);
 
-  // QUESTION: Can I spread this from req.body instead?
   await user.update({ email, username, bio, profileImgUrl });
 
-  // QUESTION: I think I need to reset the cookie?
+  // QUESTION: I think I need to reset the cookie, right?
   await setTokenCookie(res, user);
 
   return res.json({
     user
+  });
+}));
+
+// DELETE /api/users/:userId (delete a user profile)
+// QUESTION: requireAuth?
+router.delete('/:userId', asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  const user = await User.findByPk(userId);
+  await user.destroy();
+
+  res.json({
+    message: 'Success'
   });
 }));
 
