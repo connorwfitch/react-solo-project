@@ -7,7 +7,6 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
-import logo from '../../assets/gemiddeldLarge.png';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -27,25 +26,26 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <div className='navigation'>
-      <Link to='/'>
-        <img src={logo} alt='Gemiddeld' className='nav-logo'>
-        </img>
-      </Link>
-      <div>
-        <Link className='link' to='/stories/new'>
-          Write
+    <div className='nav-background'>
+      <div className='nav-container'>
+        <Link className='nav-logo' to='/'>
+          <h2>Gemiddeld</h2>
         </Link>
-        <Link className='link' to='/stories'>
-          Stories
-        </Link>
-        <Link className='link' to='/users'>
-          Users
-        </Link>
-        <Link className='link' to='/about'>
-          About
-        </Link>
-        {isLoaded && sessionLinks}
+        <div className='nav-sub'>
+          <Link className='link' to='/stories/new'>
+            Write
+          </Link>
+          <Link className='link' to='/stories'>
+            Stories
+          </Link>
+          <Link className='link' to='/users'>
+            Users
+          </Link>
+          <Link className='link' to='/about'>
+            About
+          </Link>
+          {isLoaded && sessionLinks}
+        </div>
       </div>
     </div>
   );

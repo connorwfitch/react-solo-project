@@ -1,7 +1,30 @@
-.navigation {
+.nav-background {
   background-color: #ff914d;
 }
 
+.nav-container {
+  width: 60%;
+  margin: 0 auto;
+  max-width: 1000px;
+  min-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
 .nav-logo {
-  width: 160px;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+h2 {
+  margin: 0;
+  text-decoration: none;
 }
