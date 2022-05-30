@@ -27,6 +27,7 @@ button, input {
 }
 
 .button.white {
+  font-size: 16px;
   color: #ff914d;
   border: 2px solid white;
   background-color: white;
@@ -35,4 +36,17 @@ button, input {
 .button.white:hover {
   background-color: transparent;
   color: white;
+}
+
+.link {
+  transition: all 500ms;
+  color: #484D53;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  font-size: 16px;
+}
+
+.link:hover {
+  color: black;
+  border-bottom: 2px solid black;
 }

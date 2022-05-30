@@ -1,5 +1,5 @@
 // External modules
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // Internal modules
@@ -28,11 +28,25 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className='navigation'>
-      <NavLink exact to="/">
+      <Link to='/'>
         <img src={logo} alt='Gemiddeld' className='nav-logo'>
         </img>
-      </NavLink>
-      {isLoaded && sessionLinks}
+      </Link>
+      <div>
+        <Link className='link' to='/stories/new'>
+          Write
+        </Link>
+        <Link className='link' to='/stories'>
+          Stories
+        </Link>
+        <Link className='link' to='/users'>
+          Users
+        </Link>
+        <Link className='link' to='/about'>
+          About
+        </Link>
+        {isLoaded && sessionLinks}
+      </div>
     </div>
   );
 }
