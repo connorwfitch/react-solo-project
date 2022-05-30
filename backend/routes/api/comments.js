@@ -25,7 +25,7 @@ const router = express.Router();
 // TODO: validators
 router.post('/', asyncHandler(async (req, res) => {
   const { content, userId, storyId } = req.body;
-  const comment = Comment.create({ content, userId, storyId });
+  const comment = await Comment.create({ content, userId, storyId });
 
   return res.json({
     comment

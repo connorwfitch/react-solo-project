@@ -24,7 +24,7 @@ const router = express.Router();
 // TODO: validators
 router.post('/', asyncHandler(async (req, res) => {
   const { title, headerImgUrl, content } = req.body;
-  const story = Story.create({title, headerImgUrl, content});
+  const story = await Story.create({title, headerImgUrl, content});
 
   return res.json({
     story
