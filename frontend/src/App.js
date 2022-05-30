@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 // Internal modules
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import Splash from "./components/Splash";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {/* {isLoaded && } */}
+      {isLoaded && <Splash />}
     </>
   );
 }

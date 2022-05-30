@@ -1,0 +1,10 @@
+.main {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.splash-image {
+  width: 100%;
+  border: 0px solid transparent;
+  border-radius: 5px;
+}
