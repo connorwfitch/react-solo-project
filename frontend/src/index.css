@@ -1,7 +1,51 @@
-* {
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-}
-
 body {
   margin: 0;
+  font-family: 'Montserrat';
+  font-size: 22px;
+}
+
+button, input {
+  font-family: 'Montserrat';
+}
+
+.button {
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  padding: 5px;
+  transition: all 500ms;
+}
+
+.button:hover {
+  background-color: transparent;
+  color: #ff914d;
+}
+
+.orange {
+  border: 2px solid #ff914d;
+  background-color: #ff914d;
+}
+
+.button.white {
+  font-size: 16px;
+  color: #ff914d;
+  border: 2px solid white;
+  background-color: white;
+}
+
+.button.white:hover {
+  background-color: transparent;
+  color: white;
+}
+
+.link {
+  transition: all 500ms;
+  color: black;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  font-size: 16px;
+}
+
+.link:hover {
+  border-bottom: 2px solid black;
 }
