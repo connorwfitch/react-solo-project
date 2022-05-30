@@ -210,3 +210,15 @@ npx sequelize model:generate --name Comment --attributes content:text,userId:int
 npx sequelize model:generate --name Like --attributes userId:integer,storyId:integer
 npx sequelize model:generate --name Topic --attributes name:string
 npx sequelize model:generate --name StoryTopic --attributes topicId:integer,storyId:integer
+
+npx dotenv sequelize db:drop
+npx dotenv sequelize db:create
+
+npx dotenv sequelize db:migrate
+
+--------------------------------------------------------------------------------
+Seeders
+npx sequelize seed:generate --name StorySeeder
+npx sequelize seed:generate --name CommentSeeder
+npx sequelize seed:generate --name TopicSeeder
+npx sequelize seed:generate --name StoryTopicSeeder
