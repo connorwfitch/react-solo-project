@@ -7,8 +7,10 @@ const express = require('express');
 // const { User } = require('../../db/models');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
-
-
+const storiesRouter = require('./stories.js');
+const commentsRouter = require('./comments.js');
+const likesRouter = require('./likes.js');
+const topicsRouter = require('./topics.js');
 
 const router = express.Router();
 
@@ -19,5 +21,9 @@ const router = express.Router();
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
+router.use('/stories', storiesRouter);
+router.use('/comments', commentsRouter);
+router.use('/likes', likesRouter);
+router.use('/topics', topicsRouter);
 
 module.exports = router;
