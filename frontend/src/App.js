@@ -8,6 +8,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Splash from "./components/Splash";
 import NewStory from "./components/NewStory";
+import Stories from "./components/Stories";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ function App() {
       <Route exact path='/'>
         <Navigation isLoaded={isLoaded} />
         {isLoaded && <Splash />}
+      </Route>
+      <Route exact path='/stories'>
+        <Stories />
       </Route>
       <Route exact path='/stories/new'>
         <NewStory />
