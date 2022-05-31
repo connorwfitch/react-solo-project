@@ -34,7 +34,6 @@ const storiesReducer = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
     case LOAD_ALL:
-      console.log('--------------TESTING--------------', typeof action.stories);
       action.stories.forEach(story => {
         newState[story.id] = story;
       });
