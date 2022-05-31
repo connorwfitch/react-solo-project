@@ -4,12 +4,14 @@ form {
   align-items: center;
   gap: 20px;
   padding: 40px;
+  width: 500px;
 }
 
 label {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  width: 300px;
 }
 
 input {

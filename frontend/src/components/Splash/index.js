@@ -8,7 +8,7 @@ function Splash() {
   return (
     <div className='main'>
       <h1>Blijf nieuwsgierig.</h1>
-      <h5>Discover stories, thinking, and expertise from writers on the Netherlands, city design, and much more.</h5>
+      <h5>Discover the Netherlands, city design, and much more.</h5>
       <Link to='/stories' className='button orange'>
         Start reading
       </Link>
