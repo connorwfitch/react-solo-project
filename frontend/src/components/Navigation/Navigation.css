@@ -16,6 +16,7 @@
 .nav-logo {
   text-decoration: none;
   color: black;
+  font-family: Georgia;
 }
 
 .nav-sub {
@@ -27,4 +28,5 @@
 h2 {
   margin: 0;
   text-decoration: none;
+  font-weight: 500;
 }

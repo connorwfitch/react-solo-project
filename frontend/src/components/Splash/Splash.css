@@ -1,8 +1,35 @@
-.main {
+.splash-main {
   width: 60%;
   margin: 0 auto;
   max-width: 1000px;
   min-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 80px;
+}
+
+.splash-main > * {
+  margin: 0;
+}
+
+h1.splash {
+  font-size: 100px;
+  font-family: Georgia;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 1420px) {
+  h1.splash {
+    font-size: 77px;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  h1.splash {
+    font-size: 55px;
+  }
 }
 
 .splash-image {
