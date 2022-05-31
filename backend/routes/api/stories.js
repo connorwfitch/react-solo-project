@@ -34,7 +34,7 @@ router.post('/', asyncHandler(async (req, res) => {
 
 // GET /api/stories (get all stories)
 router.get('/', asyncHandler(async (req, res) => {
-  const stories = await Story.findAll();
+  const stories = await Story.findAll({ include: User });
 
   return res.json({
     stories
@@ -45,7 +45,7 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:storyId', asyncHandler(async (req, res) => {
   const storyId = parseInt(req.params.storyId, 10);
   const story = await Story.findByPk(storyId, {
-    include: [Comment, Like]
+    include: [User, Comment, Like]
   });
 
   return res.json({
