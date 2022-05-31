@@ -3,30 +3,31 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 // Internal modules
-import * as sessionActions from "../../store/session";
-import './LoginForm.css'
 
-function LoginForm({ setShowModal }) {
+function NewStory() {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
+  const [title, setTitle] = useState('');
+  const [headerImgUrl, setHeaderImgUrl] = useState('');
+  const [content, setContent] = useState('');
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
+    // TODO: thunk for creating a story
+    return dispatch().catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
-    );
+    )
+
   };
 
   return (
-    <form onSubmit={handleSubmit} className='modal'>
+    <form onSubmit={handleSubmit}>
       <h2>
-        Welcome back
+        Tell your story
       </h2>
       {errors.length > 0 && <ul>
         {errors.map((error, i) => (
@@ -34,37 +35,36 @@ function LoginForm({ setShowModal }) {
         ))}
       </ul>}
       <label>
-        Username or Email
+        Title
         <input
           type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           required
         />
       </label>
       <label>
-        Password
+        Header Image URL
         <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          type="text"
+          value={headerImgUrl}
+          onChange={(e) => setHeaderImgUrl(e.target.value)}
+        />
+      </label>
+      <label>
+        Story Content
+        <textarea
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
           required
         />
       </label>
       <div className="buttons-holder">
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            setShowModal(false);
-          }}
-          className="button cancel"
-        >
-          Cancel
-        </button>
+        <button type="reset" className="button cancel">Cancel</button>
         <button type="submit" className="button orange">Log In</button>
       </div>
     </form>
   );
 }
 
-export default LoginForm;
+export default NewStory

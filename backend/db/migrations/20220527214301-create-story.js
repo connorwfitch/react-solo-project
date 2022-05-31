@@ -13,7 +13,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       headerImgUrl: {
-        type: Sequelize.TEXT
+        allowNull: false,
+        type: Sequelize.TEXT,
+        defaultValue: 'https://fullsuitcase.com/wp-content/uploads/2020/12/Two-days-in-Amsterdam-Netherlands.jpg'
       },
       content: {
         allowNull: false,
