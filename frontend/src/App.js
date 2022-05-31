@@ -18,18 +18,20 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Switch>
-      <Route exact path='/'>
-        <Navigation isLoaded={isLoaded} />
-        {isLoaded && <Splash />}
-      </Route>
-      <Route exact path='/stories'>
-        <Stories />
-      </Route>
-      <Route exact path='/stories/new'>
-        <NewStory />
-      </Route>
-    </Switch>
+    <>
+      <Navigation isLoaded={isLoaded} />
+      <Switch>
+        <Route exact path='/'>
+          {isLoaded && <Splash />}
+        </Route>
+        <Route exact path='/stories'>
+          <Stories />
+        </Route>
+        <Route exact path='/stories/new'>
+          <NewStory />
+        </Route>
+      </Switch>
+    </>
   );
 }
 
