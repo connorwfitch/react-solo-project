@@ -19,13 +19,12 @@ function NewStory() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(writeStory({ title, headerImgUrl, content, userId })).catch(
+    return dispatch(writeStory({ title, content, headerImgUrl, userId })).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
     )
-
   };
 
   return (

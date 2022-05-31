@@ -24,8 +24,13 @@ const router = express.Router();
 // TODO: validators
 router.post('/', asyncHandler(async (req, res) => {
   const { title, headerImgUrl, content, userId } = req.body;
-  const story = await Story.create({title, headerImgUrl, content, userId});
+  if(headerImgUrl) {
+    await Story.create({title, headerImgUrl, content, userId});
+  } else {
+    await Story.create({ title, content, userId });
+  }
 
+  const story = await Story.findByPk(userId, {include: User});
   return res.json({
     story
   });
