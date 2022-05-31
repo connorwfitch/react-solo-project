@@ -28,7 +28,7 @@ function SignupForm({ setShowModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='modal'>
       <h2>
         Join Gemiddeld
       </h2>

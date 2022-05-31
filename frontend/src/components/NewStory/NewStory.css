@@ -1,0 +1,17 @@
+.new-story {
+  width: 60%;
+  margin: auto;
+}
+
+.new-story input {
+  width: 100%;
+}
+
+textarea {
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding: 5px;
+  resize: none;
+  font-family: 'Montserrat';
+  font-size: 22px;
+}

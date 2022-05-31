@@ -24,7 +24,7 @@ function LoginForm({ setShowModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='modal'>
       <h2>
         Welcome back
       </h2>
