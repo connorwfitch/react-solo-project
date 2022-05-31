@@ -6,8 +6,8 @@ import './Splash.css';
 
 function Splash() {
   return (
-    <div className='main'>
-      <h1>Blijf nieuwsgierig.</h1>
+    <div className='splash-main'>
+      <h1 className='splash'>Blijf nieuwsgierig.</h1>
       <h5>Discover the Netherlands, city design, and much more.</h5>
       <Link to='/stories' className='button orange'>
         Start reading
