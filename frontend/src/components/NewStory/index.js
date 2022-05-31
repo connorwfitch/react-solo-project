@@ -48,7 +48,7 @@ function NewStory() {
         />
       </label>
       <label>
-        Header Image URL
+        Header Image URL (Optional)
         <input
           type="text"
           value={headerImgUrl}

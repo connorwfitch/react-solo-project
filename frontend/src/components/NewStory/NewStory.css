@@ -1,9 +1,16 @@
 .new-story {
   width: 60%;
-  margin: auto;
+  margin: 0 auto;
+  max-width: 1000px;
+  min-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 80px;
 }
 
-.new-story input {
+.new-story label {
   width: 100%;
 }
 
@@ -14,4 +21,5 @@ textarea {
   resize: none;
   font-family: 'Montserrat';
   font-size: 22px;
+  height: 10em;
 }

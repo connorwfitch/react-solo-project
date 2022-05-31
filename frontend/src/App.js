@@ -20,9 +20,10 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      {isLoaded && 
       <Switch>
         <Route exact path='/'>
-          {isLoaded && <Splash />}
+          <Splash />
         </Route>
         <Route exact path='/stories'>
           <Stories />
@@ -30,7 +31,7 @@ function App() {
         <Route exact path='/stories/new'>
           <NewStory />
         </Route>
-      </Switch>
+      </Switch>}
     </>
   );
 }
