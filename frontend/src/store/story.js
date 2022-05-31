@@ -2,11 +2,17 @@ import { csrfFetch } from "./csrf";
 
 // types
 const LOAD_ALL = 'story/loadAll';
+const ADD_ONE = 'story/addOne';
 
 // action creators
 const loadAll = stories => ({
   type: LOAD_ALL,
   stories
+});
+
+const addOne = story => ({
+  type: ADD_ONE,
+  story
 });
 
 // thunks
@@ -19,15 +25,43 @@ export const getStories = () => async dispatch => {
   }
 }
 
-// initial state
-const initialState = { storyIdList: [] }
+export const writeStory = (story) => async dispatch => {
+  const {title, headerImgUrl, content, userId} = story;
+  const response = await csrfFetch('/api/stories', {
+    method: 'POST',
+    body: JSON.stringify({
+      title,
+      headerImgUrl,
+      content,
+      userId
+    }),
+  });
 
-// utility sort
-const sortList = (list) => {
-  return list.sort((storyA, storyB) => {
-    return storyB.updatedAt - storyA.updatedAt;
-  }).map((story) => story.id)
+  if(response.ok) {
+    const output = await response.json();
+    dispatch(addOne(output.story));
+  }
 }
+
+export const editStory = (story) => async dispatch => {
+  const { title, headerImgUrl, content } = story;
+  const response = await csrfFetch('/api/stories', {
+    method: 'PATCH',
+    body: JSON.stringify({
+      title,
+      headerImgUrl,
+      content,
+    }),
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(addOne(output.story));
+  }
+}
+
+// initial state
+const initialState = { }
 
 // reducer
 const storiesReducer = (state = initialState, action) => {
@@ -37,7 +71,10 @@ const storiesReducer = (state = initialState, action) => {
       action.stories.forEach(story => {
         newState[story.id] = story;
       });
-      newState.storyIdList = sortList(action.stories);
+      return newState;
+    case ADD_ONE:
+      newState = { ...state };
+      newState[action.story.id] = action.story;
       return newState;
     default:
       return state;

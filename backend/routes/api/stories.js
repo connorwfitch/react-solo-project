@@ -23,8 +23,8 @@ const router = express.Router();
 // QUESTION: requireAuth?
 // TODO: validators
 router.post('/', asyncHandler(async (req, res) => {
-  const { title, headerImgUrl, content } = req.body;
-  const story = await Story.create({title, headerImgUrl, content});
+  const { title, headerImgUrl, content, userId } = req.body;
+  const story = await Story.create({title, headerImgUrl, content, userId});
 
   return res.json({
     story
