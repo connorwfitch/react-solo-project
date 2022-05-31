@@ -1,6 +1,7 @@
 // External modules
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // Internal modules
 import { writeStory } from '../../store/story';
@@ -9,6 +10,7 @@ import './NewStory.css';
 function NewStory() {
   const userId = useSelector(state => state.session.user.id);
   const dispatch = useDispatch();
+  const history = useHistory();
   const [title, setTitle] = useState('');
   const [headerImgUrl, setHeaderImgUrl] = useState('');
   const [content, setContent] = useState('');
@@ -62,8 +64,15 @@ function NewStory() {
         />
       </label>
       <div className="buttons-holder">
-        {/* TODO: onClick to return you to the previous page you were on */}
-        <button type="reset" className="button cancel">Cancel</button>
+        <button 
+          className="button cancel"
+          onClick={(e) => {
+            e.preventDefault();
+            history.goBack();
+          }}
+        >
+          Cancel
+        </button>
         <button type="submit" className="button orange">Publish</button>
       </div>
     </form>

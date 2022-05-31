@@ -30,7 +30,10 @@ function Stories () {
             <div className='story-card-text'>
               <h3 className='story-card-title'>{story.title}</h3>
               <p className='story-card-p'>
-                {`${story.content.slice(0, 100)}...`}
+                By: {story.userId}
+              </p>
+              <p className='story-card-p'>
+                {`${story.content.slice(0, 200)}...`}
               </p>
             </div>
           </Link>
