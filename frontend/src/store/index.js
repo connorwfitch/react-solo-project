@@ -2,6 +2,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
+import storyReducer from './story';
 
 // Internal modules
 
@@ -9,6 +10,7 @@ import sessionReducer from './session';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  story: storyReducer
 });
 
 let enhancer;

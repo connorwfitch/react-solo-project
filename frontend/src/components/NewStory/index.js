@@ -25,7 +25,7 @@ function NewStory() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='new-story'>
       <h2>
         Tell your story
       </h2>
@@ -60,8 +60,9 @@ function NewStory() {
         />
       </label>
       <div className="buttons-holder">
+        {/* TODO: onClick to return you to the previous page you were on */}
         <button type="reset" className="button cancel">Cancel</button>
-        <button type="submit" className="button orange">Log In</button>
+        <button type="submit" className="button orange">Publish</button>
       </div>
     </form>
   );
