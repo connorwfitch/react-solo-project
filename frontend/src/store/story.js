@@ -20,7 +20,14 @@ export const getStories = () => async dispatch => {
 }
 
 // initial state
-const initialState = { }
+const initialState = { storyIdList: [] }
+
+// utility sort
+const sortList = (list) => {
+  return list.sort((storyA, storyB) => {
+    return storyB.updatedAt - storyA.updatedAt;
+  }).map((story) => story.id)
+}
 
 // reducer
 const storiesReducer = (state = initialState, action) => {
@@ -30,6 +37,7 @@ const storiesReducer = (state = initialState, action) => {
       action.stories.forEach(story => {
         newState[story.id] = story;
       });
+      newState.storyIdList = sortList(action.stories);
       return newState;
     default:
       return state;
