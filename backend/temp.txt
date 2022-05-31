@@ -222,3 +222,5 @@ npx sequelize seed:generate --name StorySeeder
 npx sequelize seed:generate --name CommentSeeder
 npx sequelize seed:generate --name TopicSeeder
 npx sequelize seed:generate --name StoryTopicSeeder
+
+npx dotenv sequelize db:seed:all
