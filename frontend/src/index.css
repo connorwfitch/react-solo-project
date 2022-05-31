@@ -16,7 +16,7 @@ button, input {
   transition: all 500ms;
 }
 
-.button:hover {
+.button.orange:hover {
   background-color: transparent;
   color: #ff914d;
 }
@@ -38,12 +38,24 @@ button, input {
   color: white;
 }
 
+.cancel {
+  border: 2px solid grey;
+  background-color: grey;
+}
+
+.button.cancel:hover {
+  background-color: transparent;
+  color: grey;
+}
+
 .link {
   transition: all 500ms;
   color: black;
   text-decoration: none;
   border-bottom: 3px solid transparent;
   font-size: 16px;
+  position: relative;
+  top: 1px;
 }
 
 .link:hover {

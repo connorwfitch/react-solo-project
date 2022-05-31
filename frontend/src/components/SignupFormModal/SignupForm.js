@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 // Internal modules
 import * as sessionActions from "../../store/session";
+import './SignupForm.css'
 
 function SignupForm({ setShowModal }) {
   const dispatch = useDispatch();
@@ -28,11 +29,14 @@ function SignupForm({ setShowModal }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <ul>
+      <h2>
+        Join Gemiddeld
+      </h2>
+      {errors.length > 0 && <ul>
         {errors.map((error, i) => (
           <li key={i}>{error}</li>
         ))}
-      </ul>
+      </ul>}
       <label>
         Username
         <input
@@ -69,14 +73,18 @@ function SignupForm({ setShowModal }) {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
-      <button 
-        onClick={(e) => {
-          e.preventDefault();
-          setShowModal(false);
-      }}>
-        Cancel
-      </button>
+      <div className="buttons-holder">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setShowModal(false);
+          }}
+          className="button cancel"
+        >
+          Cancel
+        </button>
+        <button type="submit" className="button orange">Sign Up</button>
+      </div>
     </form>
   );
 }
