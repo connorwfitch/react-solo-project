@@ -21,6 +21,11 @@ module.exports = {
         content: 'In 2013, Unicef release a report card that assessed children\'s wellbeing in 29 of the richest countries. Based on the criteria of material wellbeing, health and safety, education, behaviors and risks, and housing and environment, the study concluded that Dutch children are the happiest. One of the obvious factors is education. The Dutch education system imposes less pressure on students to meet standards by specific dates; if a child is slow to read, they are not shamed for failing to meet the goal but encouraged that they will get the hang of it soon enough. There are also more subtle factors, such as increased independence. Due to the car-dependent infrasturucture, children in the United States must be driven around by their parents to get anywhere. Contrast this with the Netherlands where the children are able to safely bike to and from school, friends\' houses, sports, and other activities all on their own! Oh, and they also get to eat Hagelslag of course!',
         userId: 3,
       },
+      {
+        title: 'Test',
+        content: 'Test',
+        userId: 3
+      },
     ], {});
   },
 
