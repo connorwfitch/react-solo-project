@@ -19,7 +19,7 @@ function NewStory() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(writeStory({ title, content, headerImgUrl, userId })).catch(
+    return dispatch(writeStory({ title, content, headerImgUrl, userId })).then(history.push('/stories')).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -29,7 +29,7 @@ function NewStory() {
 
   return (
     <form onSubmit={handleSubmit} className='new-story'>
-      <h2>
+      <h2 className="tell-your-story">
         Tell your story
       </h2>
       {errors.length > 0 && <ul>
