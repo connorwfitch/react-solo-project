@@ -1,6 +1,7 @@
 // External modules
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // Internal modules
 import { getStories } from '../../store/story';
@@ -21,7 +22,7 @@ function Stories () {
     <main>
       {Object.values(stories).map((story) => {
         return (
-          <div className='story-card'>
+          <Link to={`/stories/${story.id}`} className='story-card' key={story.id}>
             <img 
               src={story.headerImgUrl} alt={`${story.title} header`}
               className='story-card-image'
@@ -32,7 +33,7 @@ function Stories () {
                 {`${story.content.slice(0, 100)}...`}
               </p>
             </div>
-          </div>
+          </Link>
         )
       })}
     </main>
