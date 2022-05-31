@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 
 // Internal modules
 const { requireAuth } = require('../../utils/auth');
-const { Story, Comment, Like } = require('../../db/models');
+const { User, Story, Comment, Like } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
