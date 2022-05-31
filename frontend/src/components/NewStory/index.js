@@ -1,10 +1,13 @@
 // External modules
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // Internal modules
+import { writeStory } from '../../store/story';
+import './NewStory.css';
 
 function NewStory() {
+  const userId = useSelector(state => state.session.user.id);
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [headerImgUrl, setHeaderImgUrl] = useState('');
@@ -14,8 +17,7 @@ function NewStory() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    // TODO: thunk for creating a story
-    return dispatch().catch(
+    return dispatch(writeStory({ title, headerImgUrl, content, userId })).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
