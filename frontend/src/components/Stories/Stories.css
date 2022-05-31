@@ -1,0 +1,43 @@
+main{
+  width: 60%;
+  margin: 0 auto;
+  max-width: 1000px;
+  min-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.story-card {
+  border: 2px solid grey;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  padding: 5px;
+  gap: 20px;
+}
+
+.story-card-image {
+  width: 80px;
+  height: 80px;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.story-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.story-card-p {
+  font-size: 16px;
+  color: grey;
+  margin: 0;
+}
+
+.story-card-title {
+  margin: 0;
+}

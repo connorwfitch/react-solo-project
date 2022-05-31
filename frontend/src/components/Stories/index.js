@@ -4,11 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Internal modules
 import { getStories } from '../../store/story';
+import './Stories.css';
 
 function Stories () {
-  const stories = useSelector(state => {
-    return state.stories.storyIdList.map(id => state.stories[id])
-  });
+  const stories = useSelector(state => state.stories);
 
   const dispatch = useDispatch();
 
@@ -20,17 +19,19 @@ function Stories () {
 
   return (
     <main>
-      {stories.map((story) => {
+      {Object.values(stories).map((story) => {
         return (
           <div className='story-card'>
-            <h3>{story.title}</h3>
             <img 
               src={story.headerImgUrl} alt={`${story.title} header`}
               className='story-card-image'
             />
-            <p className='story-card-p'>
-              {`${story.content.slice(0,100)}...`}
-            </p>
+            <div className='story-card-text'>
+              <h3 className='story-card-title'>{story.title}</h3>
+              <p className='story-card-p'>
+                {`${story.content.slice(0, 100)}...`}
+              </p>
+            </div>
           </div>
         )
       })}
