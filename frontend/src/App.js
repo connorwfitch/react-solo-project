@@ -10,6 +10,7 @@ import Splash from "./components/Splash";
 import NewStory from "./components/NewStory";
 import Stories from "./components/Stories";
 import LoginPage from "./components/LoginFormModal/LoginPage";
+import SignupPage from "./components/SignupFormModal/SignupPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
         </Route>
         <Route path='/login'>
           <LoginPage />
+        </Route>
+        <Route path='/signup'>
+          <SignupPage />
         </Route>
         <Route>
           <h1>Not Found.</h1>
