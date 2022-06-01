@@ -1,5 +1,6 @@
 // External modules
 import { useSelector } from 'react-redux';
+import CommentForm from '../CommentForm';
 
 // Internal modules
 import './CommentSection.css'
@@ -13,8 +14,8 @@ function CommentSection({ comments }) {
   return (
     <div className="comments-section">
       <h2>Comments</h2>
-      { userExists }
-      { comments.map((comment, i) => {
+      { userExists && <CommentForm />}
+      { [ ...comments].reverse().map((comment, i) => {
         return (
           <div className="comment" key={`comment-${i}`}>
             <p>{comment.content}</p>
