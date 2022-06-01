@@ -15,14 +15,20 @@ function StoryEdit() {
 
   const { storyId } = useParams();
 
+  const [title, setTitle] = useState('');
+  const [headerImgUrl, setHeaderImgUrl] = useState('');
+  const [content, setContent] = useState('');
+  const [errors, setErrors] = useState([]);
+
   useEffect(() => {
     dispatch(getStoryDetail(storyId));
   }, [dispatch, storyId])
 
-  const [title, setTitle] = useState(story ? story.title : '');
-  const [headerImgUrl, setHeaderImgUrl] = useState(story ? story.headerImgUrl : '');
-  const [content, setContent] = useState(story ? story.content : '');
-  const [errors, setErrors] = useState([]);
+  useEffect(() => {
+    setTitle(story ? story.title : '');
+    setHeaderImgUrl(story ? story.headerImgUrl : '');
+    setContent(story ? story.content : '');
+  }, [story])
 
   if (!story) return null;
 
