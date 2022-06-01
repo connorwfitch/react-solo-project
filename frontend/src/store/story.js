@@ -58,9 +58,9 @@ export const getStoryDetail = (storyId) => async dispatch => {
   }
 }
 
-export const editStory = (story) => async dispatch => {
+export const editStory = (storyId, story) => async dispatch => {
   const { title, headerImgUrl, content } = story;
-  const response = await csrfFetch('/api/stories', {
+  const response = await csrfFetch(`/api/stories/${storyId}`, {
     method: 'PATCH',
     body: JSON.stringify({
       title,

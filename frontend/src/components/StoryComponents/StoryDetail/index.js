@@ -42,9 +42,9 @@ function StoryDetail() {
         alt={`${story.title} header`}
         className='story-detail-image'
       />
-      <h4>By: {story.User.username}</h4>
+      <h3>By: {story.User.username}</h3>
       {
-        story.content.split(' \n ').map((par, i) => {
+        story.content.split('\n').map((par, i) => {
           return (
             <p key={`par-${i}`}>{par}</p>
           )

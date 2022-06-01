@@ -14,15 +14,25 @@ const router = express.Router();
 -------------------VALIDATORS-------------------
 */
 
-// TODO: validators
+const validateStory = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a title that is between 3 and 256 characters long.')
+    .isLength({ min: 3 })
+    .withMessage('Please provide a title that is between 3 and 256 characters long.')
+    .isLength({ max: 256 })
+    .withMessage('Please provide a title that is between 3 and 256 characters long.'),
+  check('content')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide content for your story.'),
+  handleValidationErrors
+]
 
 /*
 -------------------ROUTES-------------------
 */
 // POST /api/stories (create a story)
-// QUESTION: requireAuth?
-// TODO: validators
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', requireAuth, validateStory, asyncHandler(async (req, res) => {
   const { title, headerImgUrl, content, userId } = req.body;
   if(headerImgUrl) {
     await Story.create({title, headerImgUrl, content, userId});
@@ -60,12 +70,10 @@ router.get('/:storyId', asyncHandler(async (req, res) => {
 }));
 
 // PATCH /api/stories/:storyId (update a story)
-// QUESTION: requireAuth?
-// TODO: validators
-router.patch('/:storyId', asyncHandler(async (req, res) => {
+router.patch('/:storyId', requireAuth, validateStory, asyncHandler(async (req, res) => {
   const { title, headerImgUrl, content } = req.body;
   const storyId = parseInt(req.params.storyId, 10);
-  const story = await Story.findByPk(storyId);
+  const story = await Story.findByPk(storyId, { include: User });
 
   await story.update({ title, headerImgUrl, content });
 
@@ -75,8 +83,7 @@ router.patch('/:storyId', asyncHandler(async (req, res) => {
 }));
 
 // DELETE /api/stories/:storyId (delete a story)
-// QUESTION: requireAuth?
-router.delete('/:storyId', asyncHandler(async (req, res) => {
+router.delete('/:storyId', requireAuth, asyncHandler(async (req, res) => {
   const storyId = parseInt(req.params.storyId, 10);
   const story = await Story.findByPk(storyId);
 
