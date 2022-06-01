@@ -37,7 +37,7 @@ function StoryDetail() {
           </button>
         }
       </div>
-      <h1>{story.title}</h1>
+      <h1 className='story-detail-title'>{story.title}</h1>
       <img
         src={story.headerImgUrl}
         alt={`${story.title} header`}

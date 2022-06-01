@@ -65,7 +65,7 @@ function NewStory() {
         />
       </label>
       <div className="buttons-holder">
-        <button 
+        <button
           className="button cancel"
           onClick={(e) => {
             e.preventDefault();

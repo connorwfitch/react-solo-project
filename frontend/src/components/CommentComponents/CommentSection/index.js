@@ -13,8 +13,8 @@ function CommentSection({ comments }) {
 
   return (
     <div className="comments-section">
-      <h2>Comments</h2>
       { userExists && <CommentForm />}
+      <h2>Comments</h2>
       { [ ...comments].reverse().map((comment, i) => {
         return (
           <div className="comment" key={`comment-${i}`}>
