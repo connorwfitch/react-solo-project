@@ -1,22 +1,34 @@
 // External modules
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 // Internal modules
-import { editStory } from '../../../store/story';
-import './NewStory.css';
+import { editStory, getStoryDetail } from '../../../store/story';
+import './StoryEdit.css';
 
-function NewStory() {
+function StoryEdit() {
+  const story = useSelector(state => state.stories.detail);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  if (!user) history.push('/login');
 
-  const [title, setTitle] = useState('');
-  const [headerImgUrl, setHeaderImgUrl] = useState('');
-  const [content, setContent] = useState('');
+  const { storyId } = useParams();
+
+  useEffect(() => {
+    dispatch(getStoryDetail(storyId));
+  }, [dispatch, storyId])
+
+  const [title, setTitle] = useState(story ? story.title : '');
+  const [headerImgUrl, setHeaderImgUrl] = useState(story ? story.headerImgUrl : '');
+  const [content, setContent] = useState(story ? story.content : '');
   const [errors, setErrors] = useState([]);
+
+  if (!story) return null;
+
+  // Auth checks
+  if (!user) history.push('/login');
+  if (user.id !== story.User.id) history.push('/unauthorized');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,9 +42,9 @@ function NewStory() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='new-story'>
+    <form onSubmit={handleSubmit} className='story-edit'>
       <h2 className="tell-your-story">
-        Tell your story
+        Nothing is ever so good that it can't stand a little revision...
       </h2>
       {errors.length > 0 && <ul>
         {errors.map((error, i) => (
@@ -80,4 +92,4 @@ function NewStory() {
   );
 }
 
-export default NewStory
+export default StoryEdit

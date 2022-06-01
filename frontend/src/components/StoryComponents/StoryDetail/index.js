@@ -44,7 +44,7 @@ function StoryDetail() {
       />
       <h4>By: {story.User.username}</h4>
       {
-        story.content.split(' \n ').map((par, i) => {
+        story.content.split('\n').map((par, i) => {
           return (
             <p key={`par-${i}`}>{par}</p>
           )

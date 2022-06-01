@@ -12,6 +12,7 @@ import Stories from "./components/StoryComponents/Stories";
 import LoginPage from "./components/LoginFormModal/LoginPage";
 import SignupPage from "./components/SignupFormModal/SignupPage";
 import StoryDetail from "./components/StoryComponents/StoryDetail";
+import StoryEdit from "./components/StoryComponents/StoryEdit";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route exact path='/stories/:storyId'>
           <StoryDetail />
+        </Route>
+        <Route exact path='/stories/:storyId/edit'>
+          <StoryEdit />
         </Route>
         <Route path='/login'>
           <LoginPage />
