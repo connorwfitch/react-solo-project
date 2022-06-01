@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 // types
 const LOAD_ALL = 'story/loadAll';
 const ADD_ONE = 'story/addOne';
+const SET_DETAIL = 'story/setDetail';
 
 // action creators
 const loadAll = stories => ({
@@ -14,6 +15,11 @@ const addOne = story => ({
   type: ADD_ONE,
   story
 });
+
+const setDetail = story => ({
+  type: SET_DETAIL,
+  story
+})
 
 // thunks
 export const getStories = () => async dispatch => {
@@ -37,9 +43,18 @@ export const writeStory = (story) => async dispatch => {
     }),
   });
 
-  if(response.ok) {
+  if (response.ok) {
     const output = await response.json();
     dispatch(addOne(output.story));
+  }
+}
+
+export const getStoryDetail = (storyId) => async dispatch => {
+  const response = await csrfFetch(`/api/stories/${storyId}`);
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(setDetail(output.story));
   }
 }
 
@@ -61,11 +76,11 @@ export const editStory = (story) => async dispatch => {
 }
 
 // initial state
-const initialState = { }
+const initialState = { detail: null }
 
 // reducer
 const storiesReducer = (state = initialState, action) => {
-  let newState = {};
+  let newState = { ...state };
   switch (action.type) {
     case LOAD_ALL:
       action.stories.forEach(story => {
@@ -73,8 +88,10 @@ const storiesReducer = (state = initialState, action) => {
       });
       return newState;
     case ADD_ONE:
-      newState = { ...state };
       newState[action.story.id] = action.story;
+      return newState;
+    case SET_DETAIL:
+      newState.detail = action.story;
       return newState;
     default:
       return state;

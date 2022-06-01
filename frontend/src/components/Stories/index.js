@@ -20,7 +20,8 @@ function Stories () {
 
   return (
     <main>
-      {Object.values(stories).map((story) => {
+      {Object.entries(stories).map(([key, story]) => {
+        if(key === 'detail') return null;
         return (
           <Link to={`/stories/${story.id}`} className='story-card' key={story.id}>
             <img 
