@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import Splash from "./components/Splash";
 import NewStory from "./components/NewStory";
 import Stories from "./components/Stories";
+import LoginPage from "./components/LoginFormModal/LoginPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,12 @@ function App() {
         </Route>
         <Route exact path='/stories/new'>
           <NewStory />
+        </Route>
+        <Route path='/login'>
+          <LoginPage />
+        </Route>
+        <Route>
+          <h1>Not Found.</h1>
         </Route>
       </Switch>}
     </>

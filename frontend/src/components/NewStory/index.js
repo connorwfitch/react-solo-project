@@ -8,9 +8,11 @@ import { writeStory } from '../../store/story';
 import './NewStory.css';
 
 function NewStory() {
-  const userId = useSelector(state => state.session.user.id);
+  const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  if(!user) history.push('/login');
+  
   const [title, setTitle] = useState('');
   const [headerImgUrl, setHeaderImgUrl] = useState('');
   const [content, setContent] = useState('');
@@ -19,7 +21,7 @@ function NewStory() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(writeStory({ title, content, headerImgUrl, userId })).then(history.push('/stories')).catch(
+    return dispatch(writeStory({ title, content, headerImgUrl, userId: user.id })).then(history.push('/stories')).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
