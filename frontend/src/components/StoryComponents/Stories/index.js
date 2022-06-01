@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 // Internal modules
-import { getStories } from '../../store/story';
+import { getStories } from '../../../store/story';
 import './Stories.css';
 
 function Stories () {
