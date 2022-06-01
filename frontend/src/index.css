@@ -35,6 +35,16 @@ button, input {
   background-color: #ff914d;
 }
 
+.red {
+  border: 2px solid #BA1B1D;
+  background-color: #BA1B1D;
+}
+
+.button.red:hover {
+  background-color: transparent;
+  color: #BA1B1D;
+}
+
 .button.white {
   font-size: 16px;
   color: #ff914d;

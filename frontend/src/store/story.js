@@ -4,6 +4,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_ALL = 'story/loadAll';
 const ADD_ONE = 'story/addOne';
 const SET_DETAIL = 'story/setDetail';
+const DELETE_ONE = 'sory/deleteOne';
 
 // action creators
 const loadAll = stories => ({
@@ -19,7 +20,12 @@ const addOne = story => ({
 const setDetail = story => ({
   type: SET_DETAIL,
   story
-})
+});
+
+const deleteOne = storyId => ({
+  type: DELETE_ONE,
+  storyId
+});
 
 // thunks
 export const getStories = () => async dispatch => {
@@ -75,6 +81,17 @@ export const editStory = (storyId, story) => async dispatch => {
   }
 }
 
+export const deleteStory = (storyId) => async dispatch => {
+  const response = await csrfFetch(`/api/stories/${storyId}`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(deleteOne(output.storyId));
+  }
+}
+
 // initial state
 const initialState = { detail: null }
 
@@ -92,6 +109,10 @@ const storiesReducer = (state = initialState, action) => {
       return newState;
     case SET_DETAIL:
       newState.detail = action.story;
+      return newState;
+    case DELETE_ONE:
+      newState.detail = null;
+      delete newState[action.storyId];
       return newState;
     default:
       return state;

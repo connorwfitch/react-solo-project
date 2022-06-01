@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 // Internal modules
 import { editStory, getStoryDetail } from '../../../store/story';
+import StoryDeleteModal from "../StoryDeleteModal";
 import './StoryEdit.css';
 
 function StoryEdit() {
@@ -93,6 +94,7 @@ function StoryEdit() {
           Cancel
         </button>
         <button type="submit" className="button orange">Publish</button>
+        <StoryDeleteModal storyId={storyId}/>
       </div>
     </form>
   );

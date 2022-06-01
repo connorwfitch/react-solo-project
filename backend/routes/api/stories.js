@@ -90,7 +90,8 @@ router.delete('/:storyId', requireAuth, asyncHandler(async (req, res) => {
   await story.destroy();
 
   res.json({
-    message: 'Success'
+    message: 'Success',
+    storyId
   });
 }));
 
