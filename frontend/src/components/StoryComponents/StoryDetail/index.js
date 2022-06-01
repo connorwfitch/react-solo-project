@@ -47,7 +47,7 @@ function StoryDetail() {
       {
         story.content.split('\n').map((par, i) => {
           return (
-            <p key={`par-${i}`}>{par}</p>
+            <p key={`par-${i}`} className='story-detail-p'>{par}</p>
           )
         })
       }

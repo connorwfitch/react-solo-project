@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Internal modules
 import { writeComment } from "../../../store/story";
+import './CommentForm.css';
 
 
 function CommentForm({ comments }) {

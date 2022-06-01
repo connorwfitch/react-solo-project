@@ -18,8 +18,8 @@ function CommentSection({ comments }) {
       { [ ...comments].reverse().map((comment, i) => {
         return (
           <div className="comment" key={`comment-${i}`}>
+            <p className='comment-user'>{`${comment.User.username}:`}</p>
             <p>{comment.content}</p>
-            <p>{comment.User.username}</p>
           </div>
         )
       })}
