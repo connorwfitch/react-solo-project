@@ -19,7 +19,7 @@ function Stories () {
   if (!stories) return null;
 
   return (
-    <main>
+    <main className='stories-main'>
       {Object.entries(stories).map(([key, story]) => {
         if(key === 'detail') return null;
         return (
