@@ -33,7 +33,7 @@ function StoryEdit() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(editStory({ title, content, headerImgUrl, userId: user.id })).then(() => history.push('/stories')).catch(
+    return dispatch(editStory(storyId, { title, content, headerImgUrl, userId: user.id })).then(() => history.push('/stories')).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -42,7 +42,7 @@ function StoryEdit() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='story-edit'>
+    <form onSubmit={handleSubmit} className='new-story'>
       <h2 className="tell-your-story">
         Nothing is ever so good that it can't stand a little revision...
       </h2>

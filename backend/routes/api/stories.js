@@ -73,7 +73,7 @@ router.get('/:storyId', asyncHandler(async (req, res) => {
 router.patch('/:storyId', requireAuth, validateStory, asyncHandler(async (req, res) => {
   const { title, headerImgUrl, content } = req.body;
   const storyId = parseInt(req.params.storyId, 10);
-  const story = await Story.findByPk(storyId);
+  const story = await Story.findByPk(storyId, { include: User });
 
   await story.update({ title, headerImgUrl, content });
 
