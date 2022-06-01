@@ -10,8 +10,9 @@
 }
 
 .story-card {
-  border: 2px solid grey;
+  border: 0px solid transparent;
   border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   width: 100%;
   display: flex;
   padding: 10px;
