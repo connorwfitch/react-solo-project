@@ -61,7 +61,13 @@ router.get('/:storyId', asyncHandler(async (req, res) => {
   const storyId = parseInt(req.params.storyId, 10);
   const story = await Story.findByPk(storyId, {
     // QUESTION: 'Like is not associated to Story!'
-    include: [User, Comment]
+    include: [
+      User,
+      {
+        model: Comment,
+        include: User
+      }
+    ]
   });
 
   return res.json({

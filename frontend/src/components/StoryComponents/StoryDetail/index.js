@@ -5,6 +5,7 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 
 // Internal modules
 import { getStoryDetail } from '../../../store/story';
+import CommentSection from '../../CommentComponents/CommentSection';
 import './StoryDetail.css';
 
 function StoryDetail() {
@@ -50,6 +51,7 @@ function StoryDetail() {
           )
         })
       }
+      <CommentSection comments={story.Comments} />
     </main>
   );
 

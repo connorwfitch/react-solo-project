@@ -5,58 +5,84 @@ const { check } = require('express-validator');
 
 // Internal modules
 const { requireAuth } = require('../../utils/auth');
-const { Comment } = require('../../db/models');
+const { Comment, Story } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
-
-/*
--------------------VALIDATORS-------------------
-*/
-
-// TODO: validators?
 
 /*
 -------------------ROUTES-------------------
 */
 
 // POST /api/comments (create a comment)
-// QUESTION: requireAuth?
-// TODO: validators
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', requireAuth, asyncHandler(async (req, res) => {
   const { content, userId, storyId } = req.body;
   const comment = await Comment.create({ content, userId, storyId });
 
+  const story = await Story.findByPk(storyId, {
+    // QUESTION: 'Like is not associated to Story!'
+    include: [
+      User,
+      {
+        model: Comment,
+        include: User
+      }
+    ]
+  });
+
+  // We return the entire story because the comments are nested in the story slice of state
   return res.json({
-    comment
+    story
   });
 }));
 
 // PATCH /api/comments/:commentId (update a comment)
-// QUESTION: requireAuth?
-// TODO: validators
-router.patch('/:commentId', asyncHandler(async (req, res) => {
+router.patch('/:commentId', requireAuth, asyncHandler(async (req, res) => {
   const { content } = req.body;
   const commentId = parseInt(req.params.commentId, 10);
   const comment = await Comment.findByPk(commentId);
 
   await comment.update({ content });
 
+  const story = await Story.findByPk(storyId, {
+    // QUESTION: 'Like is not associated to Story!'
+    include: [
+      User,
+      {
+        model: Comment,
+        include: User
+      }
+    ]
+  });
+
+  // We return the entire story because the comments are nested in the story slice of state
   return res.json({
-    comment
+    story
   });
 }));
 
 // DELETE /api/comments/:commentId (delete a comment)
-// QUESTION: requireAuth?
-router.delete('/:commentId', asyncHandler(async (req, res) => {
+router.delete('/:commentId', requireAuth, asyncHandler(async (req, res) => {
   const commentId = parseInt(req.params.commentId, 10);
   const comment = await Comment.findByPk(commentId);
+  const storyId = comment.storyId;
 
   await comment.destroy();
 
+  const story = await Story.findByPk(storyId, {
+    // QUESTION: 'Like is not associated to Story!'
+    include: [
+      User,
+      {
+        model: Comment,
+        include: User
+      }
+    ]
+  });
+
+  // We return the entire story because the comments are nested in the story slice of state
   return res.json({
-    message: 'Success'
+    story
   });
 }));
 
