@@ -31,6 +31,7 @@ const validateSignup = [
   check('username')
     .exists({ checkFalsy: true })
     .isLength({ min: 3 })
+    .withMessage('Please provide a username that is between 3 and 30 characters long.')
     .isLength({ max: 30 })
     .withMessage('Please provide a username that is between 3 and 30 characters long.'),
   check('username')

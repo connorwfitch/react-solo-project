@@ -17,7 +17,9 @@ const router = express.Router();
 const validateStory = [
   check('title')
     .exists({ checkFalsy: true })
+    .withMessage('Please provide a title that is between 3 and 256 characters long.')
     .isLength({ min: 3 })
+    .withMessage('Please provide a title that is between 3 and 256 characters long.')
     .isLength({ max: 256 })
     .withMessage('Please provide a title that is between 3 and 256 characters long.'),
   check('content')
