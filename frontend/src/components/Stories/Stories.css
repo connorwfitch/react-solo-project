@@ -1,6 +1,6 @@
 main{
   width: 60%;
-  margin: 0 auto;
+  margin: 80px auto 0;
   max-width: 1000px;
   min-width: 600px;
   display: flex;
@@ -14,14 +14,14 @@ main{
   border-radius: 5px;
   width: 100%;
   display: flex;
-  padding: 5px;
+  padding: 10px;
   gap: 20px;
   text-decoration: none;
 }
 
 .story-card-image {
   width: 160px;
-  height: 160px;
+  min-height: 160px;
   border: 0px solid transparent;
   border-radius: 5px;
   object-fit: cover;

@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 
 // Internal modules
 const { requireAuth } = require('../../utils/auth');
-const { Story, Comment, Like } = require('../../db/models');
+const { User, Story, Comment, Like } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
@@ -24,8 +24,13 @@ const router = express.Router();
 // TODO: validators
 router.post('/', asyncHandler(async (req, res) => {
   const { title, headerImgUrl, content, userId } = req.body;
-  const story = await Story.create({title, headerImgUrl, content, userId});
+  if(headerImgUrl) {
+    await Story.create({title, headerImgUrl, content, userId});
+  } else {
+    await Story.create({ title, content, userId });
+  }
 
+  const story = await Story.findByPk(userId, {include: User});
   return res.json({
     story
   });
@@ -34,7 +39,7 @@ router.post('/', asyncHandler(async (req, res) => {
 
 // GET /api/stories (get all stories)
 router.get('/', asyncHandler(async (req, res) => {
-  const stories = await Story.findAll();
+  const stories = await Story.findAll({ include: User });
 
   return res.json({
     stories
@@ -45,7 +50,7 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:storyId', asyncHandler(async (req, res) => {
   const storyId = parseInt(req.params.storyId, 10);
   const story = await Story.findByPk(storyId, {
-    include: [Comment, Like]
+    include: [User, Comment, Like]
   });
 
   return res.json({

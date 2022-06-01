@@ -9,6 +9,8 @@ import Navigation from "./components/Navigation";
 import Splash from "./components/Splash";
 import NewStory from "./components/NewStory";
 import Stories from "./components/Stories";
+import LoginPage from "./components/LoginFormModal/LoginPage";
+import SignupPage from "./components/SignupFormModal/SignupPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,9 +22,10 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      {isLoaded && 
       <Switch>
         <Route exact path='/'>
-          {isLoaded && <Splash />}
+          <Splash />
         </Route>
         <Route exact path='/stories'>
           <Stories />
@@ -30,7 +33,16 @@ function App() {
         <Route exact path='/stories/new'>
           <NewStory />
         </Route>
-      </Switch>
+        <Route path='/login'>
+          <LoginPage />
+        </Route>
+        <Route path='/signup'>
+          <SignupPage />
+        </Route>
+        <Route>
+          <h1>Not Found.</h1>
+        </Route>
+      </Switch>}
     </>
   );
 }

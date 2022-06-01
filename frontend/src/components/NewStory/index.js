@@ -8,9 +8,11 @@ import { writeStory } from '../../store/story';
 import './NewStory.css';
 
 function NewStory() {
-  const userId = useSelector(state => state.session.user.id);
+  const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  if(!user) history.push('/login');
+  
   const [title, setTitle] = useState('');
   const [headerImgUrl, setHeaderImgUrl] = useState('');
   const [content, setContent] = useState('');
@@ -19,18 +21,17 @@ function NewStory() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(writeStory({ title, headerImgUrl, content, userId })).catch(
+    return dispatch(writeStory({ title, content, headerImgUrl, userId: user.id })).then(history.push('/stories')).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
     )
-
   };
 
   return (
     <form onSubmit={handleSubmit} className='new-story'>
-      <h2>
+      <h2 className="tell-your-story">
         Tell your story
       </h2>
       {errors.length > 0 && <ul>
@@ -48,7 +49,7 @@ function NewStory() {
         />
       </label>
       <label>
-        Header Image URL
+        Header Image URL (Optional)
         <input
           type="text"
           value={headerImgUrl}
