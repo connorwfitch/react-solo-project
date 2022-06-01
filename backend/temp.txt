@@ -226,6 +226,13 @@ npx sequelize seed:generate --name StoryTopicSeeder
 
 npx dotenv sequelize db:seed:all
 
+undo/reset:
+
+npx dotenv sequelize db:seed:undo:all
+npx dotenv sequelize db:migrate:undo:all
+npx dotenv sequelize db:migrate
+npx dotenv sequelize db:seed:all
+
 
 --------------------------------------------------------------------------------
 Heroku

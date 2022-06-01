@@ -30,7 +30,7 @@ function StoryDetail() {
       />
       <h1>{story.title}</h1>
       {
-        story.content.split('\n').map((par, i) => {
+        story.content.split(' \n ').map((par, i) => {
           return (
             <p key={`par-${i}`}>{par}</p>
           )
