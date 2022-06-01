@@ -19,14 +19,33 @@ const validateSignup = [
     .exists({ checkFalsy: true })
     .isEmail()
     .withMessage('Please provide a valid email.'),
+  check('email')
+    .custom((value) => {
+      return User.findOne({ where: { email: value } })
+        .then((user) => {
+          if (user) {
+            return Promise.reject('The provided email is already in use by another user.');
+          }
+        });
+    }),
   check('username')
     .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
+    .isLength({ min: 3 })
+    .isLength({ max: 30 })
+    .withMessage('Please provide a username that is between 3 and 30 characters long.'),
   check('username')
     .not()
     .isEmail()
     .withMessage('Username cannot be an email.'),
+  check('username')
+    .custom((value) => {
+      return User.findOne({ where: { username: value } })
+        .then((user) => {
+          if (user) {
+            return Promise.reject('The provided username is already in use by another user.');
+          }
+        });
+    }),
   check('password')
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
@@ -35,23 +54,7 @@ const validateSignup = [
 ];
 
 const validatePatch = [
-  check('email')
-    .exists({ checkFalsy: true })
-    .isEmail()
-    .withMessage('Please provide a valid email.'),
-  check('username')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
-  check('username')
-    .not()
-    .isEmail()
-    .withMessage('Username cannot be an email.'),
-  check('password')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 6 })
-    .withMessage('Password must be 6 characters or more.'),
-  handleValidationErrors
+  // will need to be different from above to check uniqueness agianst others but not self
 ];
 
 /*

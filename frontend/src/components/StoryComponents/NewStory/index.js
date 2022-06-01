@@ -21,7 +21,7 @@ function NewStory() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(writeStory({ title, content, headerImgUrl, userId: user.id })).then(history.push('/stories')).catch(
+    return dispatch(writeStory({ title, content, headerImgUrl, userId: user.id })).then(() => history.push('/stories')).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
