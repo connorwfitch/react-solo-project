@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 // Internal modules
 import { editStory, getStoryDetail } from '../../../store/story';
+import StoryDeleteModal from "../StoryDeleteModal";
 import './StoryEdit.css';
 
 function StoryEdit() {
@@ -15,14 +16,20 @@ function StoryEdit() {
 
   const { storyId } = useParams();
 
+  const [title, setTitle] = useState('');
+  const [headerImgUrl, setHeaderImgUrl] = useState('');
+  const [content, setContent] = useState('');
+  const [errors, setErrors] = useState([]);
+
   useEffect(() => {
     dispatch(getStoryDetail(storyId));
   }, [dispatch, storyId])
 
-  const [title, setTitle] = useState(story ? story.title : '');
-  const [headerImgUrl, setHeaderImgUrl] = useState(story ? story.headerImgUrl : '');
-  const [content, setContent] = useState(story ? story.content : '');
-  const [errors, setErrors] = useState([]);
+  useEffect(() => {
+    setTitle(story ? story.title : '');
+    setHeaderImgUrl(story ? story.headerImgUrl : '');
+    setContent(story ? story.content : '');
+  }, [story])
 
   if (!story) return null;
 
@@ -87,6 +94,7 @@ function StoryEdit() {
           Cancel
         </button>
         <button type="submit" className="button orange">Publish</button>
+        <StoryDeleteModal storyId={storyId}/>
       </div>
     </form>
   );
