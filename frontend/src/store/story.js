@@ -92,6 +92,23 @@ export const deleteStory = (storyId) => async dispatch => {
   }
 }
 
+export const writeComment = (comment) => async dispatch => {
+  const { content, userId, storyId } = comment;
+  const response = await csrfFetch(`/api/comments`, {
+    method: 'POST',
+    body: JSON.stringify({
+      content,
+      userId,
+      storyId,
+    }),
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(setDetail(output.story));
+  }
+}
+
 // initial state
 const initialState = { detail: null }
 
