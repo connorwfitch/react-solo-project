@@ -75,6 +75,7 @@ function SignupForm({ setShowModal }) {
       </label>
       <div className="buttons-holder">
         <button
+          type="button"
           onClick={(e) => {
             e.preventDefault();
             setShowModal(false);
