@@ -63,6 +63,11 @@ function LoginForm({ setShowModal }) {
         </button>
         <button type="submit" className="button orange">Log In</button>
       </div>
+      <button onClick={(e) => {
+        e.preventDefault();
+        setCredential('demo@user.io');
+        setPassword('password');
+      }} className="button orange">Use Demo Credentials</button>
     </form>
   );
 }
