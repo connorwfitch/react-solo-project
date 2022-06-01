@@ -1,0 +1,30 @@
+.story-detail-main {
+  width: 60%;
+  margin: 40px auto;
+  max-width: 1000px;
+  min-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.story-detail-main > * {
+  margin: 0;
+}
+
+.story-detail-links {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.story-detail-image {
+  width: 100%;
+  min-height: 300px;
+  max-height: 600px;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  object-fit: cover;
+}

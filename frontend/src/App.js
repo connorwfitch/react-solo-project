@@ -7,11 +7,11 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Splash from "./components/Splash";
-import NewStory from "./components/NewStory";
-import Stories from "./components/Stories";
+import NewStory from "./components/StoryComponents/NewStory";
+import Stories from "./components/StoryComponents/Stories";
 import LoginPage from "./components/LoginFormModal/LoginPage";
 import SignupPage from "./components/SignupFormModal/SignupPage";
-import StoryDetail from "./components/StoryDetail";
+import StoryDetail from "./components/StoryComponents/StoryDetail";
 
 function App() {
   const dispatch = useDispatch();
