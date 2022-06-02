@@ -51,3 +51,13 @@ body {
   height: 100%;
   padding-top: 80px;
 }
+
+i {
+  padding: 0px 10px;
+}
+
+h2 {
+  margin: 0;
+  text-decoration: none;
+  font-weight: 500;
+}

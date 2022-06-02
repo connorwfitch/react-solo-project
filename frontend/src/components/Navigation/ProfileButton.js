@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 
 // Internal modules
 import * as sessionActions from '../../store/session';
-import './ProfileButton.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
