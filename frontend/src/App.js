@@ -13,6 +13,7 @@ import LoginPage from "./components/LoginFormModal/LoginPage";
 import SignupPage from "./components/SignupFormModal/SignupPage";
 import StoryDetail from "./components/StoryComponents/StoryDetail";
 import StoryEdit from "./components/StoryComponents/StoryEdit";
+import NotFound from "./components/MiscComponents/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,8 +48,11 @@ function App() {
         <Route path='/signup'>
           <SignupPage />
         </Route>
+        <Route path='/unauthorized'>
+          <NotFound text='Unauthorized' />
+        </Route>
         <Route>
-          <h1>Not Found.</h1>
+          <NotFound text='Not Found'/>
         </Route>
       </Switch>}
     </>
