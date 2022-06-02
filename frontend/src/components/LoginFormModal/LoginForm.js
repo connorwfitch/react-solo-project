@@ -24,7 +24,7 @@ function LoginForm({ setShowModal }) {
 
   return (
     <form onSubmit={handleSubmit} className='form-special'>
-      <h2>
+      <h2 className="average">
         Welcome back
       </h2>
       {errors.length > 0 && <ul>

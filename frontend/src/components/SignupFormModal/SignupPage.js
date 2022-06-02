@@ -35,7 +35,7 @@ function SignupPage() {
   return (
     <div className="special-background" >
       <form onSubmit={handleSubmit} className='form-page'>
-        <h2>
+        <h2 className="average">
           Join Gemiddeld
         </h2>
         {errors.length > 0 && <ul>
