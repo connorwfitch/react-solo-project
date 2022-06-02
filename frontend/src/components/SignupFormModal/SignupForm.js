@@ -27,11 +27,11 @@ function SignupForm({ setShowModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='modal'>
+    <form onSubmit={handleSubmit} className='form-special'>
       <h2 className="average">
         Join Gemiddeld
       </h2>
-      {errors.length > 0 && <ul>
+      {errors.length > 0 && <ul className="errors">
         {errors.map((error, i) => (
           <li key={i}>{error}</li>
         ))}

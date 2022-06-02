@@ -47,3 +47,15 @@ input {
   border-radius: 5px;
   border: 2px solid grey;
 }
+
+.errors {
+  border: 2px solid #BA1B1D;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 30px 10px;
+}
+
+.errors > * {
+  color: #BA1B1D;
+}

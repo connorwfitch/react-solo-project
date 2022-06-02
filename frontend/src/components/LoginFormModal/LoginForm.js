@@ -27,7 +27,7 @@ function LoginForm({ setShowModal }) {
       <h2 className="average">
         Welcome back
       </h2>
-      {errors.length > 0 && <ul>
+      {errors.length > 0 && <ul className="errors">
         {errors.map((error, i) => (
           <li key={i}>{error}</li>
         ))}

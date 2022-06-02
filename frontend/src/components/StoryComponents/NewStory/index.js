@@ -34,7 +34,7 @@ function NewStory() {
         <h2 className="average">
           Tell your story
         </h2>
-        {errors.length > 0 && <ul>
+        {errors.length > 0 && <ul className="errors">
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
           ))}
