@@ -109,6 +109,17 @@ export const writeComment = (comment) => async dispatch => {
   }
 }
 
+export const deleteComment = (commentId) => async dispatch => {
+  const response = await csrfFetch(`/api/comments/${commentId}`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(setDetail(output.story));
+  }
+}
+
 // initial state
 const initialState = { detail: null };
 
