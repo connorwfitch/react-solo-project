@@ -24,6 +24,9 @@ function CommentSection() {
           <Comment i={i} key={`comment-${i}`}/>
         )
       })}
+      { comments.length === 0 && <p>
+        No comments yet.
+      </p>}
     </div>
   )
 }
