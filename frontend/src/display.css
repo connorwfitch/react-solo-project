@@ -71,4 +71,10 @@
   align-items: center;
   gap: 20px;
   align-self: center;
+  padding: 20px;
+  width: 600px;
+}
+
+.detail-profile > * {
+  margin: 0;
 }

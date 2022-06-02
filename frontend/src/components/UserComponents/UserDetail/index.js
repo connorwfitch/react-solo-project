@@ -27,7 +27,7 @@ function UserDetail() {
           Back to Users
         </Link>
       </div>
-      <div className='detail-profile'>
+      <div className='detail-profile border-shadow'>
         <h1>{userDetail.username}</h1>
         <img
           src={userDetail.profileImgUrl}
