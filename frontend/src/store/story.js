@@ -4,7 +4,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_ALL = 'story/loadAll';
 const ADD_ONE = 'story/addOne';
 const SET_DETAIL = 'story/setDetail';
-const DELETE_ONE = 'sory/deleteOne';
+const DELETE_ONE = 'story/deleteOne';
 
 // action creators
 const loadAll = stories => ({
@@ -110,7 +110,7 @@ export const writeComment = (comment) => async dispatch => {
 }
 
 // initial state
-const initialState = { detail: null }
+const initialState = { detail: null };
 
 // reducer
 const storiesReducer = (state = initialState, action) => {

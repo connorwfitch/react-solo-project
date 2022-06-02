@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { getStories } from '../../../store/story';
 import './Stories.css';
 
-function Stories () {
+function Stories() {
   const stories = useSelector(state => state.stories);
 
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function Stories () {
                 By: {story.User.username}
               </p>
               <p className='story-card-p'>
-                {`${story.content.slice(0, 200)}...`}
+                {story.content.length > 150 ? `${story.content.slice(0, 150)}...` : story.content}
               </p>
             </div>
           </Link>
