@@ -47,15 +47,15 @@ function UserDetail() {
             <div className='display-card-text'>
               <h3 className='display-card-title'>{story.title}</h3>
               <p className='display-card-p'>
-                By: {story.User.username}
-              </p>
-              <p className='display-card-p'>
                 {story.content.length > 150 ? `${story.content.slice(0, 150)}...` : story.content}
               </p>
             </div>
           </Link>
         )
       })}
+      {userDetail.Stories.length === 0 && <p>
+        {userDetail.username} does not have any stories yet
+      </p>}
     </main>
   );
 }
