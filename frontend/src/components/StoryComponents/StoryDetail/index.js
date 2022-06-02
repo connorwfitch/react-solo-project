@@ -40,7 +40,7 @@ function StoryDetail() {
       <img
         src={story.headerImgUrl}
         alt={`${story.title} header`}
-        className='detail-image'
+        className='detail-header-image'
       />
       <h3>By: {story.User.username}</h3>
       {

@@ -35,10 +35,6 @@
   color: black;
 }
 
-.detail-main>* {
-  margin: 0;
-}
-
 .detail-links {
   width: 100%;
   display: flex;
@@ -46,7 +42,7 @@
   align-items: center;
 }
 
-.detail-image {
+.detail-header-image {
   width: 100%;
   min-height: 300px;
   max-height: 600px;
@@ -55,7 +51,24 @@
   object-fit: cover;
 }
 
+.detail-profile-image {
+  height: 300px;
+  width: 300px;
+  align-self: center;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
 .detail-p {
   font-family: 'Average';
   font-size: 20px;
+}
+
+.detail-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  align-self: center;
 }

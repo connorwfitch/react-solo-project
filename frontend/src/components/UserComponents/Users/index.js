@@ -18,18 +18,18 @@ function Users() {
   if (!users) return null;
 
   return (
-    <main className='stories-main'>
+    <main className='main flex-col-20'>
       {Object.entries(users).map(([key, user]) => {
         if (key === 'detail') return null;
         return (
-          <Link to={`/users/${user.id}`} className='story-card' key={user.id}>
+          <Link to={`/users/${user.id}`} className='display-card' key={user.id}>
             <img
               src={user.profileImgUrl} alt={`${user.username} profile`}
-              className='story-card-image'
+              className='display-card-image'
             />
-            <div className='story-card-text'>
-              <h3 className='story-card-title'>{user.username}</h3>
-              <p className='story-card-p'>
+            <div className='display-card-text'>
+              <h3 className='display-card-title'>{user.username}</h3>
+              <p className='display-card-p'>
                 {user.bio}
               </p>
             </div>
