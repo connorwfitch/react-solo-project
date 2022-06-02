@@ -5,7 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 
 // Internal modules
 import * as sessionActions from "../../store/session";
-import './LoginPage.css'
 
 function LoginPage() {
   const user = useSelector(state => state.session.user);
@@ -31,7 +30,7 @@ function LoginPage() {
 
   return (
     <div className="special-background" >
-      <form onSubmit={handleSubmit} className='form-page'>
+      <form onSubmit={handleSubmit} className='form-special'>
         <h2>
           Please Log In
         </h2>

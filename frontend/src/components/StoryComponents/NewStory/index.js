@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 
 // Internal modules
 import { writeStory } from '../../../store/story';
-import './NewStory.css';
 
 function NewStory() {
   const user = useSelector(state => state.session.user);
@@ -30,53 +29,55 @@ function NewStory() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='new-story'>
-      <h2 className="tell-your-story">
-        Tell your story
-      </h2>
-      {errors.length > 0 && <ul>
-        {errors.map((error, i) => (
-          <li key={i}>{error}</li>
-        ))}
-      </ul>}
-      <label>
-        Title
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Header Image URL (Optional)
-        <input
-          type="text"
-          value={headerImgUrl}
-          onChange={(e) => setHeaderImgUrl(e.target.value)}
-        />
-      </label>
-      <label>
-        Story Content
-        <textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          required
-        />
-      </label>
-      <div className="buttons-holder">
-        <button
-          className="button cancel"
-          onClick={(e) => {
-            e.preventDefault();
-            history.goBack();
-          }}
-        >
-          Cancel
-        </button>
-        <button type="submit" className="button orange">Publish</button>
-      </div>
-    </form>
+    <div className="main flex-col-20">
+      <form onSubmit={handleSubmit} className='flex-col-20 form-page border-shadow'>
+        <h2 className="average">
+          Tell your story
+        </h2>
+        {errors.length > 0 && <ul>
+          {errors.map((error, i) => (
+            <li key={i}>{error}</li>
+          ))}
+        </ul>}
+        <label>
+          Title
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Header Image URL (Optional)
+          <input
+            type="text"
+            value={headerImgUrl}
+            onChange={(e) => setHeaderImgUrl(e.target.value)}
+          />
+        </label>
+        <label>
+          Story Content
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            required
+          />
+        </label>
+        <div className="buttons-holder">
+          <button
+            className="button cancel"
+            onClick={(e) => {
+              e.preventDefault();
+              history.goBack();
+            }}
+          >
+            Cancel
+          </button>
+          <button type="submit" className="button orange">Publish</button>
+        </div>
+      </form>
+    </div>
   );
 }
 

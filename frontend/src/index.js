@@ -6,6 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 
 // Internal modules
 import "./index.css";
+import "./button.css";
+import "./form.css";
 import App from "./App";
 import { ModalProvider } from "./context/Modal";
 import configureStore from "./store";

@@ -5,7 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 
 // Internal modules
 import * as sessionActions from "../../store/session";
-import './SignupPage.css'
 
 function SignupPage() {
   const user = useSelector(state => state.session.user);

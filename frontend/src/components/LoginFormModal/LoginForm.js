@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 
 // Internal modules
 import * as sessionActions from "../../store/session";
-import './LoginForm.css'
 
 function LoginForm({ setShowModal }) {
   const dispatch = useDispatch();
@@ -24,7 +23,7 @@ function LoginForm({ setShowModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='modal'>
+    <form onSubmit={handleSubmit} className='form-special'>
       <h2>
         Welcome back
       </h2>

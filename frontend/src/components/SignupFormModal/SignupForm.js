@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 
 // Internal modules
 import * as sessionActions from "../../store/session";
-import './SignupForm.css'
 
 function SignupForm({ setShowModal }) {
   const dispatch = useDispatch();
