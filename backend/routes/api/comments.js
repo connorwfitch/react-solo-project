@@ -42,6 +42,7 @@ router.patch('/:commentId', requireAuth, asyncHandler(async (req, res) => {
 
   await comment.update({ content });
 
+  const storyId = comment.storyId;
   const story = await Story.findByPk(storyId, {
     // QUESTION: 'Like is not associated to Story!'
     include: [

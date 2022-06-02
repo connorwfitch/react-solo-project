@@ -51,7 +51,7 @@ function StoryDetail() {
           )
         })
       }
-      <CommentSection comments={story.Comments} />
+      <CommentSection />
     </main>
   );
 

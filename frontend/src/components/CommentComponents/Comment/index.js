@@ -1,13 +1,15 @@
 // External modules
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 
 // Internal modules
 import { editComment } from "../../../store/story";
 import CommentDeleteModal from '../CommentDeleteModal';
 
-function Comment({ comment, i }) {
+function Comment({ i }) {
   const user = useSelector(state => state.session.user);
+  const story = useSelector(state => state.stories.detail);
+  const comment = story.Comments[i];
   const dispatch = useDispatch();
 
   const [formShow, setFormShow] = useState(false);
@@ -17,6 +19,10 @@ function Comment({ comment, i }) {
     e.preventDefault();
     return dispatch(editComment({ content, commentId: comment.id })).then(() => setFormShow(false));
   };
+
+  useEffect(() => {
+    setContent(comment.content);
+  }, [comment])
 
   let userExists = false;
   if (user) userExists = true;
