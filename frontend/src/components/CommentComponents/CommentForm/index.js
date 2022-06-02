@@ -9,7 +9,7 @@ import './CommentForm.css';
 
 function CommentForm({ comments }) {
   const userId = useSelector(state => state.session.user.id);
-  const storyId = useSelector(state => state.stories.detail.id)
+  const storyId = useSelector(state => state.stories.detail.id);
   const dispatch = useDispatch();
 
   const [content, setContent] = useState('');
