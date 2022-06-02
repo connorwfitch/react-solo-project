@@ -5,7 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 
 // Internal modules
 import * as sessionActions from "../../store/session";
-import './LoginPage.css'
 
 function LoginPage() {
   const user = useSelector(state => state.session.user);
@@ -31,11 +30,11 @@ function LoginPage() {
 
   return (
     <div className="special-background" >
-      <form onSubmit={handleSubmit} className='form-page'>
-        <h2>
+      <form onSubmit={handleSubmit} className='form-special'>
+        <h2 className="average">
           Please Log In
         </h2>
-        {errors.length > 0 && <ul>
+        {errors.length > 0 && <ul className="errors">
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
           ))}
@@ -70,10 +69,9 @@ function LoginPage() {
           </button>
           <button type="submit" className="button orange">Log In</button>
         </div>
-        <button onClick={(e) => {
+        <button type="button" onClick={(e) => {
           e.preventDefault();
-          setCredential('demo@user.io');
-          setPassword('password');
+          dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }));
         }} className="button orange">Use Demo Credentials</button>
         <Link to='/signup' className="link">
           Don't have an account?

@@ -13,74 +13,59 @@ body {
   height: 100%;
 }
 
-button, input {
-  font-family: 'Montserrat';
+.average {
+  font-family: 'Average';
 }
 
-.button {
+.main {
+  width: 60%;
+  margin: 80px auto 0px;
+  max-width: 1000px;
+  min-width: 600px;
+  padding-bottom: 80px;
+}
+
+.flex-col-20 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.main > * {
+  margin: 0;
+}
+
+.border-shadow {
+  border: 0px solid transparent;
   border-radius: 5px;
-  text-decoration: none;
-  color: white;
-  padding: 5px;
-  transition: all 500ms;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
-.button.orange:hover {
-  background-color: transparent;
-  color: #ff914d;
+.special-background {
+  background: url('https://i1.wp.com/wheelchairtravel.org/wp-content/uploads/2020/01/amsterdam-guide-v2020-header.jpg?fit=2500%2C1333&ssl=1');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  padding-top: 80px;
 }
 
-.orange {
-  border: 2px solid #ff914d;
-  background-color: #ff914d;
-}
-
-.red {
-  border: 2px solid #BA1B1D;
-  background-color: #BA1B1D;
-}
-
-.button.red:hover {
-  background-color: transparent;
-  color: #BA1B1D;
-}
-
-.button.white {
-  font-size: 16px;
-  color: #ff914d;
-  border: 2px solid white;
-  background-color: white;
-}
-
-.button.white:hover {
-  background-color: transparent;
-  color: white;
-}
-
-.cancel {
-  border: 2px solid grey;
-  background-color: grey;
-}
-
-.button.cancel:hover {
-  background-color: transparent;
-  color: grey;
-}
-
-.link {
-  transition: all 500ms;
-  color: black;
-  text-decoration: none;
-  border-bottom: 3px solid transparent;
-  font-size: 16px;
-  position: relative;
-  top: 1px;
-}
-
-.link:hover {
-  border-bottom: 2px solid black;
+i {
+  padding: 0px 10px;
 }
 
 h2 {
-  font-family: 'Average';
+  margin: 0;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.delete-modal {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
