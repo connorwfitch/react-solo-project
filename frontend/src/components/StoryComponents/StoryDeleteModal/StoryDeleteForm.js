@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 // Internal modules
 import { deleteStory } from "../../../store/story";
-import './StoryDeleteForm.css';
 
 function StoryDeleteForm({ storyId, setShowModal }) {
   const dispatch = useDispatch();

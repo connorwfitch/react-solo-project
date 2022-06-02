@@ -6,7 +6,6 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 // Internal modules
 import { getStoryDetail } from '../../../store/story';
 import CommentSection from '../../CommentComponents/CommentSection';
-import './StoryDetail.css';
 
 function StoryDetail() {
   const story = useSelector(state => state.stories.detail);
@@ -26,8 +25,8 @@ function StoryDetail() {
   if(user) userExists = true;
 
   return (
-    <main className='story-detail-main'>
-      <div className='story-detail-links'>
+    <main className='main flex-col-20'>
+      <div className='detail-links'>
         <Link to='/stories' className='link'>
           Back to Stories
         </Link>
@@ -37,17 +36,17 @@ function StoryDetail() {
           </button>
         }
       </div>
-      <h1 className='story-detail-title'>{story.title}</h1>
+      <h1 className='detail-title'>{story.title}</h1>
       <img
         src={story.headerImgUrl}
         alt={`${story.title} header`}
-        className='story-detail-image'
+        className='detail-image'
       />
       <h3>By: {story.User.username}</h3>
       {
         story.content.split('\n').map((par, i) => {
           return (
-            <p key={`par-${i}`} className='story-detail-p'>{par}</p>
+            <p key={`par-${i}`} className='detail-p'>{par}</p>
           )
         })
       }
