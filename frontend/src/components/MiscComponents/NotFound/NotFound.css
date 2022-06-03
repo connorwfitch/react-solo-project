@@ -12,6 +12,7 @@
   align-items: center;
   gap: 40px;
   padding: 40px;
+  box-sizing: border-box;
 }
 
 .misc-container * {
