@@ -25,6 +25,15 @@ const validateStory = [
   check('content')
     .exists({ checkFalsy: true })
     .withMessage('Please provide content for your story.'),
+  check('headerImgUrl')
+    .custom((value) => {
+      if(value) {
+        const urlExpression = /^(https?):\/\/[\w\/\.\-]+\.(png|jpeg|jpg)$/g;
+        if(!value.match(urlExpression)) {
+          return Promise.reject('Please provide a valid HTTP(S) URL ending in .png, .jpg, or .jpeg');
+        } else return Promise.resolve();
+      } else return Promise.resolve();
+    }),
   handleValidationErrors
 ]
 
