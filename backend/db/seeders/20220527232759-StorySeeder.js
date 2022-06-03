@@ -11,7 +11,7 @@ module.exports = {
       },
       {
         title: 'Delight per Acre',
-        headerImgUrl: 'https://images.squarespace-cdn.com/content/v1/53dd6676e4b0fedfbc26ea91/1626821457910-7D6JETZ5NDQ4XL0EF5WN/1024px-Shambles_shopper_8686.jpg?format=2500w',
+        headerImgUrl: 'https://images.squarespace-cdn.com/content/v1/53dd6676e4b0fedfbc26ea91/1626821457910-7D6JETZ5NDQ4XL0EF5WN/1024px-Shambles_shopper_8686.jpg',
         content: 'Some of the most delightful urban spaces are also some of the smallest, and it is a seemingly-counterintuitive observation that we should more deeply consider. This is true of both public and private space. Think of the most charming, appealing spaces you have ever spent time in: gardens, patios, courtyards, alleyways, or pedestrian streets. I would hazard a guess that these spaces are more intimate than expansive.\nThe reason behind this is twofold. First is simply that spaces scaled to our physical bodies are more comfortable, providing a sense of enclosure and security. Wide open spaces without defining edges can be ovewhelming and alienating.\nThe other reason has to do with our capacity for attention. When you\'re designing a small space, you are more likely to consider every detail and every inch, but on larger scales this attention to detail becomes unsustainable, leaving us with large, nondescript lawns and oversized superstore parking lots.\nNot to mention that these smaller places are safer and more likely to be financially solvent! (See other articles for more.)',
         userId: 2,
       },
