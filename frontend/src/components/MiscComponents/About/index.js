@@ -38,7 +38,7 @@ function About() {
           As a German speaker, I am delighted that I can just mispronounce everything and more or less get by!
         </p>
         <p>
-          Jokes aside, I am glad that I was able to make a project that tied together my passion for coding and city design, and I hope you enjoy using the site!
+          Jokes aside, I am glad that I was able to make a project that tied together my passions for coding and city design, and I hope you enjoy using the site.
         </p>
         <Link to='/' className="link">
           Return to home page
