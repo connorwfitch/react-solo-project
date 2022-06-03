@@ -16,6 +16,7 @@ import StoryEdit from "./components/StoryComponents/StoryEdit";
 import NotFound from "./components/MiscComponents/NotFound";
 import Users from "./components/UserComponents/Users";
 import UserDetail from "./components/UserComponents/UserDetail";
+import About from "./components/MiscComponents/About";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +56,9 @@ function App() {
         </Route>
         <Route exact path='/users/:userDetailId'>
           <UserDetail />
+        </Route>
+        <Route exact path='/about'>
+          <About />
         </Route>
         <Route path='/unauthorized'>
           <NotFound text='Unauthorized' />
