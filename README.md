@@ -23,6 +23,18 @@ Gemiddeld is a Dutch- and walkable-community-themed clone of Medium built using 
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 
+### Splash Page
+![Splash Page](docs/splash.png)
+
+### Login Page
+![Login Page](docs/login.png)
+
+### Story Page
+![Story Page](docs/story.png)
+
+### User Page
+![User Page](docs/user.png)
+
 ### Installation Instructions
 1. Clone the repository using `git clone git@github.com:connorwfitch/react-solo-project.git`
 2. Install frontend packages using `cd frontend` and `npm install`
