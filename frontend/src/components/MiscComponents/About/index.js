@@ -1,3 +1,6 @@
+// External modules
+import { Link } from "react-router-dom";
+
 function About() {
   return (
     <div className="special-background" >
@@ -37,6 +40,9 @@ function About() {
         <p>
           Jokes aside, I am glad that I was able to make a project that tied together my passion for coding and city design, and I hope you enjoy using the site!
         </p>
+        <Link to='/' className="link">
+          Return to home page
+        </Link>
       </div>
     </div>
   )
