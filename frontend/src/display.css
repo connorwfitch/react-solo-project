@@ -78,3 +78,10 @@
 .detail-profile > * {
   margin: 0;
 }
+
+.detail-byline {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -18,12 +18,15 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
   const comment = await Comment.create({ content, userId, storyId });
 
   const story = await Story.findByPk(storyId, {
-    // QUESTION: 'Like is not associated to Story!'
     include: [
       User,
       {
         model: Comment,
         include: User
+      },
+      {
+        model: User,
+        as: 'userLike'
       }
     ]
   });
@@ -44,12 +47,15 @@ router.patch('/:commentId', requireAuth, asyncHandler(async (req, res) => {
 
   const storyId = comment.storyId;
   const story = await Story.findByPk(storyId, {
-    // QUESTION: 'Like is not associated to Story!'
     include: [
       User,
       {
         model: Comment,
         include: User
+      },
+      {
+        model: User,
+        as: 'userLike'
       }
     ]
   });
@@ -69,12 +75,15 @@ router.delete('/:commentId', requireAuth, asyncHandler(async (req, res) => {
   await comment.destroy();
 
   const story = await Story.findByPk(storyId, {
-    // QUESTION: 'Like is not associated to Story!'
     include: [
       User,
       {
         model: Comment,
         include: User
+      },
+      {
+        model: User,
+        as: 'userLike'
       }
     ]
   });
