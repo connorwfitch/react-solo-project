@@ -23,7 +23,6 @@ function StoryDetail() {
 
 
   if(!story) return null;
-  console.log(story.userLike);
 
   let userExists = false;
   if(user) userExists = true;
@@ -49,7 +48,7 @@ function StoryDetail() {
       <div className='detail-byline'>
         <h3>By: {story.User.username}</h3>
         <div className='buttons-holder'>
-          <p>Likes: {story.userLike.length}</p>
+          <p>Likes: {story.Likes.length}</p>
           <LikeButton />
         </div>
       </div>

@@ -14,15 +14,15 @@ function LikeButton() {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const userLikeIds = new Set(story.userLike.map(like => like.id));
-  console.log(userLikeIds);
+  const userLikeIds = new Set(story.Likes.map(like => like.userId));
 
   const handleLike = () => {
     return dispatch(addLike({ userId: user.id, storyId: story.id }))
   }
 
   const handleUnlike = () => {
-    return dispatch(deleteLike())
+    const [likeId] = story.Likes.filter(like => like.userId === user.id).map(like => like.id)
+    return dispatch(deleteLike(likeId))
   }
 
   let displayedButton;
@@ -44,7 +44,7 @@ function LikeButton() {
     )
   } else if (userLikeIds.has(user.id)) {
     displayedButton = (
-      <button className='button unlike' onClick={handleLike}>
+      <button className='button unlike' onClick={handleUnlike}>
         <i className="fa-solid fa-heart"></i>
       </button>
     )
