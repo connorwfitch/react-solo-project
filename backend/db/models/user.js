@@ -52,12 +52,13 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function (models) {
     User.hasMany(models.Story, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true });
     User.hasMany(models.Comment, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true });
-    User.belongsToMany(models.Story, {
-      through: 'Like',
-      foreignKey: 'userId',
-      otherKey: 'storyId',
-      as: 'storyLike'
-    });
+    // User.belongsToMany(models.Story, {
+    //   through: 'Like',
+    //   foreignKey: 'userId',
+    //   otherKey: 'storyId',
+    //   as: 'storyLike'
+    // });
+    User.hasMany(models.Like, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true });
   };
 
   // user instance methods

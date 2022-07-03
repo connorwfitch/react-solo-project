@@ -6,6 +6,7 @@ input {
 .buttons-holder {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .button {
@@ -14,6 +15,7 @@ input {
   color: white;
   padding: 5px;
   transition: all 500ms;
+  cursor: pointer;
 }
 
 .button.orange:hover {
@@ -24,6 +26,28 @@ input {
 .orange {
   border: 2px solid #ff914d;
   background-color: #ff914d;
+}
+
+.like {
+  background-color: white;
+  color: #ff914d;
+  border: 2px solid #ff914d;
+}
+
+.button.like:hover {
+  background-color: #ff914d;
+  color: white;
+}
+
+.unlike {
+  background-color: #ff914d;
+  color: white;
+  border: 2px solid #ff914d;
+}
+
+.button.unlike:hover {
+  background-color: white;
+  color: #ff914d;
 }
 
 .red {

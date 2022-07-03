@@ -6,6 +6,7 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 // Internal modules
 import { getStoryDetail } from '../../../store/story';
 import CommentSection from '../../CommentComponents/CommentSection';
+import LikeButton from './LikeButton';
 
 function StoryDetail() {
   const story = useSelector(state => state.stories.detail);
@@ -18,6 +19,8 @@ function StoryDetail() {
   useEffect(() => {
     dispatch(getStoryDetail(storyId));
   }, [dispatch, storyId])
+
+
 
   if(!story) return null;
 
@@ -42,7 +45,13 @@ function StoryDetail() {
         alt={`${story.title} header`}
         className='detail-header-image'
       />
-      <h3>By: {story.User.username}</h3>
+      <div className='detail-byline'>
+        <h3>By: {story.User.username}</h3>
+        <div className='buttons-holder'>
+          <p>Likes: {story.Likes.length}</p>
+          <LikeButton />
+        </div>
+      </div>
       {
         story.content.split('\n').map((par, i) => {
           return (

@@ -135,6 +135,33 @@ export const deleteComment = (commentId) => async dispatch => {
   }
 }
 
+export const addLike = (like) => async dispatch => {
+  const {userId, storyId} = like;
+  const response = await csrfFetch(`/api/likes`, {
+    method: 'POST',
+    body: JSON.stringify({
+      userId,
+      storyId,
+    }),
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(setDetail(output.story));
+  }
+}
+
+export const deleteLike = (likeId) => async dispatch => {
+  const response = await csrfFetch(`/api/likes/${likeId}`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(setDetail(output.story));
+  }
+}
+
 // initial state
 const initialState = { detail: null };
 

@@ -18,8 +18,6 @@ function UserDetail() {
 
   if(!userDetail) return null;
 
-  console.log(userDetail)
-
   return (
     <main className='main flex-col-20'>
       <div className='detail-links'>
