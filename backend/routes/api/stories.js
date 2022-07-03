@@ -75,10 +75,7 @@ router.get('/:storyId', asyncHandler(async (req, res) => {
         model: Comment,
         include: User
       },
-      {
-        model: User,
-        as: 'userLike'
-      }
+      Like,
     ]
   });
 

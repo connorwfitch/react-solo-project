@@ -24,10 +24,7 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
         model: Comment,
         include: User
       },
-      {
-        model: User,
-        as: 'userLike'
-      }
+      Like,
     ]
   });
 
@@ -53,10 +50,7 @@ router.patch('/:commentId', requireAuth, asyncHandler(async (req, res) => {
         model: Comment,
         include: User
       },
-      {
-        model: User,
-        as: 'userLike'
-      }
+      Like,
     ]
   });
 
@@ -81,10 +75,7 @@ router.delete('/:commentId', requireAuth, asyncHandler(async (req, res) => {
         model: Comment,
         include: User
       },
-      {
-        model: User,
-        as: 'userLike'
-      }
+      Like,
     ]
   });
 

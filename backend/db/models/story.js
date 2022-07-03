@@ -20,12 +20,13 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'storyId',
       otherKey: 'topicId'
     });
-    Story.belongsToMany(models.User, {
-      through: 'Like',
-      foreignKey: 'storyId',
-      otherKey: 'userId',
-      as: 'userLike'
-    });
+    // Story.belongsToMany(models.User, {
+    //   through: 'Like',
+    //   foreignKey: 'storyId',
+    //   otherKey: 'userId',
+    //   as: 'userLike'
+    // });
+    Story.hasMany(models.Like, { foreignKey: 'storyId', onDelete: 'CASCADE', hooks: true });
   };
   return Story;
 };
