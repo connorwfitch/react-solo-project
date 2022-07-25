@@ -38,15 +38,20 @@ export const getStories = () => async dispatch => {
 }
 
 export const writeStory = (story) => async dispatch => {
-  const {title, headerImgUrl, content, userId} = story;
+  const {title, image, content, userId} = story;
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("image", image);
+  formData.append("content", content);
+  formData.append("userId", userId);
+
   const response = await csrfFetch('/api/stories', {
-    method: 'POST',
-    body: JSON.stringify({
-      title,
-      headerImgUrl,
-      content,
-      userId
-    }),
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
   });
 
   if (response.ok) {
@@ -65,14 +70,22 @@ export const getStoryDetail = (storyId) => async dispatch => {
 }
 
 export const editStory = (storyId, story) => async dispatch => {
-  const { title, headerImgUrl, content } = story;
+  const { title, headerImgUrl, image, content } = story;
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("headerImgUrl", headerImgUrl);
+  formData.append("content", content);
+
+  // if updating image
+  if (image) formData.append("image", image);
+
   const response = await csrfFetch(`/api/stories/${storyId}`, {
     method: 'PATCH',
-    body: JSON.stringify({
-      title,
-      headerImgUrl,
-      content,
-    }),
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
   });
 
   if (response.ok) {

@@ -1,7 +1,7 @@
 // External modules
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 
 // Internal modules
 import * as sessionActions from "../../store/session";
@@ -10,8 +10,6 @@ function LoginPage() {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-
-  if(user) history.push('/');
 
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -27,6 +25,12 @@ function LoginPage() {
       }
     );
   };
+
+  if (user) {
+    return (
+      <Redirect to={'/'} />
+    )
+  }
 
   return (
     <div className="special-background" >

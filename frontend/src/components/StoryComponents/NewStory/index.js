@@ -1,7 +1,7 @@
 // External modules
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 // Internal modules
 import { writeStory } from '../../../store/story';
@@ -10,23 +10,33 @@ function NewStory() {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  if(!user) history.push('/login');
   
   const [title, setTitle] = useState('');
-  const [headerImgUrl, setHeaderImgUrl] = useState('');
+  const [image, setImage] = useState(false);
   const [content, setContent] = useState('');
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(writeStory({ title, content, headerImgUrl, userId: user.id })).then(() => history.push('/stories')).catch(
+    return dispatch(writeStory({ title, content, image, userId: user.id })).then(() => history.push('/stories')).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
     )
   };
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
+  };
+
+  if (!user) {
+    return (
+      <Redirect to={'/login'}/>
+    )
+  }
 
   return (
     <div className="main flex-col-20">
@@ -49,11 +59,12 @@ function NewStory() {
           />
         </label>
         <label>
-          Header Image URL (Optional)
+          Image
           <input
-            type="text"
-            value={headerImgUrl}
-            onChange={(e) => setHeaderImgUrl(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={updateFile}
+            required
           />
         </label>
         <label>
