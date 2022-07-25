@@ -12,19 +12,24 @@ function NewStory() {
   const history = useHistory();
   
   const [title, setTitle] = useState('');
-  const [headerImgUrl, setHeaderImgUrl] = useState('');
+  const [image, setImage] = useState(false);
   const [content, setContent] = useState('');
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(writeStory({ title, content, headerImgUrl, userId: user.id })).then(() => history.push('/stories')).catch(
+    return dispatch(writeStory({ title, content, image, userId: user.id })).then(() => history.push('/stories')).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
     )
+  };
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
   };
 
   if (!user) {
@@ -54,11 +59,12 @@ function NewStory() {
           />
         </label>
         <label>
-          Header Image URL (Optional)
+          Image
           <input
-            type="text"
-            value={headerImgUrl}
-            onChange={(e) => setHeaderImgUrl(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={updateFile}
+            required
           />
         </label>
         <label>

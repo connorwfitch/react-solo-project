@@ -7,6 +7,7 @@ const { check } = require('express-validator');
 const { requireAuth } = require('../../utils/auth');
 const { User, Story, Comment, Like } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
+const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3');
 
 const router = express.Router();
 
@@ -25,15 +26,15 @@ const validateStory = [
   check('content')
     .exists({ checkFalsy: true })
     .withMessage('Please provide content for your story.'),
-  check('headerImgUrl')
-    .custom((value) => {
-      if(value) {
-        const urlExpression = /^(https?):\/\/[\w\/\.\-]+\.(png|jpeg|jpg)$/g;
-        if(!value.match(urlExpression)) {
-          return Promise.reject('Please provide a valid HTTP(S) URL ending in .png, .jpg, or .jpeg');
-        } else return Promise.resolve();
-      } else return Promise.resolve();
-    }),
+  // check('headerImgUrl')
+  //   .custom((value) => {
+  //     if(value) {
+  //       const urlExpression = /^(https?):\/\/[\w\/\.\-]+\.(png|jpeg|jpg)$/g;
+  //       if(!value.match(urlExpression)) {
+  //         return Promise.reject('Please provide a valid HTTP(S) URL ending in .png, .jpg, or .jpeg');
+  //       } else return Promise.resolve();
+  //     } else return Promise.resolve();
+  //   }),
   handleValidationErrors
 ]
 
@@ -41,13 +42,11 @@ const validateStory = [
 -------------------ROUTES-------------------
 */
 // POST /api/stories (create a story)
-router.post('/', requireAuth, validateStory, asyncHandler(async (req, res) => {
-  const { title, headerImgUrl, content, userId } = req.body;
-  if(headerImgUrl) {
-    await Story.create({title, headerImgUrl, content, userId});
-  } else {
-    await Story.create({ title, content, userId });
-  }
+router.post('/', requireAuth, singleMulterUpload("image"), validateStory, asyncHandler(async (req, res) => {
+  const { title, content, userId } = req.body;
+  const headerImgUrl = await singlePublicFileUpload(req.file);
+  
+  await Story.create({title, headerImgUrl, content, userId});
 
   const story = await Story.findByPk(userId, {include: User});
   return res.json({
@@ -85,8 +84,13 @@ router.get('/:storyId', asyncHandler(async (req, res) => {
 }));
 
 // PATCH /api/stories/:storyId (update a story)
-router.patch('/:storyId', requireAuth, validateStory, asyncHandler(async (req, res) => {
-  const { title, headerImgUrl, content } = req.body;
+router.patch('/:storyId', requireAuth, singleMulterUpload("image"), validateStory, asyncHandler(async (req, res) => {
+  let { title, headerImgUrl, content } = req.body;
+
+  if (req.file) {
+    headerImgUrl = await singlePublicFileUpload(req.file);
+  }
+
   const storyId = parseInt(req.params.storyId, 10);
   const story = await Story.findByPk(storyId, { include: User });
 
