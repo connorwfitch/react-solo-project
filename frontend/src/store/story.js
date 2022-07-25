@@ -70,14 +70,22 @@ export const getStoryDetail = (storyId) => async dispatch => {
 }
 
 export const editStory = (storyId, story) => async dispatch => {
-  const { title, headerImgUrl, content } = story;
+  const { title, headerImgUrl, image, content } = story;
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("headerImgUrl", headerImgUrl);
+  formData.append("content", content);
+
+  // if updating image
+  if (image) formData.append("image", image);
+
   const response = await csrfFetch(`/api/stories/${storyId}`, {
     method: 'PATCH',
-    body: JSON.stringify({
-      title,
-      headerImgUrl,
-      content,
-    }),
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
   });
 
   if (response.ok) {

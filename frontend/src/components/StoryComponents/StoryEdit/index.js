@@ -16,7 +16,7 @@ function StoryEdit() {
   const { storyId } = useParams();
 
   const [title, setTitle] = useState('');
-  const [headerImgUrl, setHeaderImgUrl] = useState('');
+  const [image, setImage] = useState(false);
   const [content, setContent] = useState('');
   const [errors, setErrors] = useState([]);
 
@@ -26,7 +26,6 @@ function StoryEdit() {
 
   useEffect(() => {
     setTitle(story ? story.title : '');
-    setHeaderImgUrl(story ? story.headerImgUrl : '');
     setContent(story ? story.content : '');
   }, [story])
 
@@ -39,12 +38,17 @@ function StoryEdit() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(editStory(storyId, { title, content, headerImgUrl, userId: user.id })).then(() => history.push(`/stories/${storyId}`)).catch(
+    return dispatch(editStory(storyId, { title, content, headerImgUrl: story.headerImgUrl, image,})).then(() => history.push(`/stories/${storyId}`)).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
     )
+  };
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
   };
 
   return (
@@ -68,11 +72,11 @@ function StoryEdit() {
           />
         </label>
         <label>
-          Header Image URL (Optional)
+          Update Image (Optional)
           <input
-            type="text"
-            value={headerImgUrl}
-            onChange={(e) => setHeaderImgUrl(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={updateFile}
           />
         </label>
         <label>
