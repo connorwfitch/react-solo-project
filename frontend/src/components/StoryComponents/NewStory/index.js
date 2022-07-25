@@ -1,7 +1,7 @@
 // External modules
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 // Internal modules
 import { writeStory } from '../../../store/story';
@@ -10,7 +10,6 @@ function NewStory() {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  if(!user) history.push('/login');
   
   const [title, setTitle] = useState('');
   const [headerImgUrl, setHeaderImgUrl] = useState('');
@@ -27,6 +26,12 @@ function NewStory() {
       }
     )
   };
+
+  if (!user) {
+    return (
+      <Redirect to={'/login'}/>
+    )
+  }
 
   return (
     <div className="main flex-col-20">
