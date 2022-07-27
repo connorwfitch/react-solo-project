@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 // Internal modules
 import { writeStory } from '../../../store/story';
@@ -19,7 +21,10 @@ function NewStory() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(writeStory({ title, content, image, userId: user.id })).then(() => history.push('/stories')).catch(
+    if (!content || content === '<p><br></p>') {
+      return setErrors(['Please provide content for your story.']);
+    }
+    return dispatch(writeStory({ title, image, content, userId: user.id })).then(() => history.push('/stories')).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -41,37 +46,34 @@ function NewStory() {
   return (
     <div className="main flex-col-20">
       <form onSubmit={handleSubmit} className='flex-col-20 form-page border-shadow'>
-        <h2 className="average">
-          Tell your story
-        </h2>
         {errors.length > 0 && <ul className="errors">
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
           ))}
         </ul>}
-        <label>
-          Title
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </label>
+        <input
+          className="title-input"
+          type="text"
+          value={title}
+          placeholder='Title...'
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <ReactQuill
+          required
+          theme="snow"
+          value={content}
+          onChange={setContent}
+          placeholder={"Tell your story..."}
+          className="text-editor"
+        />
         <label>
           Image
           <input
+            className="image-input"
             type="file"
             accept="image/*"
             onChange={updateFile}
-            required
-          />
-        </label>
-        <label>
-          Story Content
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
             required
           />
         </label>

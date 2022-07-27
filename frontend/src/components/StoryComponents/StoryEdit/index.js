@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 // Internal modules
 import { editStory, getStoryDetail } from '../../../store/story';
@@ -38,6 +40,9 @@ function StoryEdit() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+    if (!content || content === '<p><br></p>') {
+      return setErrors(['Please provide content for your story.']);
+    }
     return dispatch(editStory(storyId, { title, content, headerImgUrl: story.headerImgUrl, image,})).then(() => history.push(`/stories/${storyId}`)).catch(
       async (res) => {
         const data = await res.json();
@@ -54,37 +59,34 @@ function StoryEdit() {
   return (
     <div className="main flex-col-20">
       <form onSubmit={handleSubmit} className='flex-col-20 form-page border-shadow'>
-        <h2 className="average">
-          Nothing is ever so good that it can't stand a little revision...
-        </h2>
         {errors.length > 0 && <ul className="errors">
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
           ))}
         </ul>}
-        <label>
-          Title
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </label>
+        <input
+          className="title-input"
+          type="text"
+          value={title}
+          placeholder='Title...'
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <ReactQuill
+          required
+          theme="snow"
+          value={content}
+          onChange={setContent}
+          placeholder={"Tell your story..."}
+          className="text-editor"
+        />
         <label>
           Update Image (Optional)
           <input
+            className="image-input"
             type="file"
             accept="image/*"
             onChange={updateFile}
-          />
-        </label>
-        <label>
-          Story Content
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            required
           />
         </label>
         <div className="buttons-holder">
