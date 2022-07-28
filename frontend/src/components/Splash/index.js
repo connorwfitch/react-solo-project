@@ -7,8 +7,8 @@ import './Splash.css';
 function Splash() {
   return (
     <div className='main flex-col-20'>
-      <h1 className='splash average'>Blijf nieuwsgierig.</h1>
-      <h5>Discover the Netherlands, city design, and much more.</h5>
+      <h1 className='splash garamond'>Blijf nieuwsgierig.</h1>
+      <h5 className='normal'>Discover the Netherlands, city design, and much more.</h5>
       <Link to='/stories' className='button orange'>
         Start reading
       </Link>

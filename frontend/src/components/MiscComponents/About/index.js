@@ -5,7 +5,7 @@ function About() {
   return (
     <div className="special-background" >
       <div className="misc-container">
-        <h1 className="average">About</h1>
+        <h1 className="garamond">About</h1>
         <div className="buttons-holder" >
           <a href="https://github.com/connorwfitch/react-solo-project" className="link">
             Project Repo

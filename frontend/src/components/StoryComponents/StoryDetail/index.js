@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams, useHistory } from 'react-router-dom';
+import parse from 'html-react-parser';
 
 // Internal modules
 import { getStoryDetail } from '../../../store/story';
@@ -52,13 +53,9 @@ function StoryDetail() {
           <LikeButton />
         </div>
       </div>
-      {
-        story.content.split('\n').map((par, i) => {
-          return (
-            <p key={`par-${i}`} className='detail-p'>{par}</p>
-          )
-        })
-      }
+      <div className='detail-p'>
+        {parse(story.content)}
+      </div>
       <CommentSection />
     </main>
   );
