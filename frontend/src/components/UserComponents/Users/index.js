@@ -27,7 +27,7 @@ function Users() {
               src={user.profileImgUrl} alt={`${user.username} profile`}
               className='display-card-image'
             />
-            <div className='display-card-text'>
+            <div className='display-card-text-user'>
               <h3 className='display-card-title'>{user.username}</h3>
               <p className='display-card-p'>
                 {user.bio}
