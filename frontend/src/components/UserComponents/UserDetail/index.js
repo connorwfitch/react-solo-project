@@ -45,6 +45,9 @@ function UserDetail() {
             />
             <div className='display-card-text'>
               <h2 className='display-card-title'>{story.title}</h2>
+              <p className='display-card-p'>
+                By: {userDetail.username}
+              </p>
               <div className='display-card-story'>
                 {parse(story.content)}
               </div>

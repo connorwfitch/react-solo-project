@@ -43,7 +43,13 @@ function StoryEdit() {
     if (!content || content === '<p><br></p>') {
       return setErrors(['Please provide content for your story.']);
     }
-    return dispatch(editStory(storyId, { title, content, headerImgUrl: story.headerImgUrl, image,})).then(() => history.push(`/stories/${storyId}`)).catch(
+
+    let postContent = content
+    while (postContent.includes('<p><br></p>')) {
+      const idx = postContent.indexOf('<p><br></p>');
+      postContent = postContent.slice(0, idx) + postContent.slice(idx + 11);
+    }
+    return dispatch(editStory(storyId, { title, content: postContent, headerImgUrl: story.headerImgUrl, image,})).then(() => history.push(`/stories/${storyId}`)).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
