@@ -8,6 +8,7 @@
 .form-page label {
   width: 100%;
   font-size: 16px;
+  font-family: 'EB Garamond';
 }
 
 .form-page textarea {
@@ -58,4 +59,42 @@ input {
 
 .errors > * {
   color: #BA1B1D;
+}
+
+.image-input {
+  border: none;
+  border-radius: 0px;
+  font-size: 14px;
+}
+
+.title-input {
+  font-family: 'EB Garamond';
+  border: none;
+  font-size: 32px;
+  width: 100%;
+  outline: none;
+}
+
+.text-editor {
+  width: 100%;
+  height: 150px;
+  box-sizing: border-box;
+  margin-bottom: 40px;
+}
+
+input::file-selector-button {
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  padding: 5px;
+  transition: all 500ms;
+  cursor: pointer;
+  border: 2px solid #ff914d;
+  background-color: #ff914d;
+  font-family: 'Montserrat';
+}
+
+input::file-selector-button:hover {
+  background-color: transparent;
+  color: #ff914d;
 }

@@ -20,3 +20,7 @@ h1.splash {
   border: 0px solid transparent;
   border-radius: 5px;
 }
+
+.normal {
+  font-weight: normal;
+}

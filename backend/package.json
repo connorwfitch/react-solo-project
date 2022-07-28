@@ -6,6 +6,7 @@
   "scripts": {
     "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
+    "reset": "dotenv sequelize-cli db:drop && dotenv sequelize-cli db:create && dotenv sequelize-cli db:migrate && dotenv sequelize-cli db:seed:all",
     "start": "per-env",
     "start:development": "nodemon -r dotenv/config ./bin/www",
     "start:production": "node ./bin/www"

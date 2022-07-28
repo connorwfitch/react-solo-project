@@ -8,7 +8,7 @@ function NotFound({ text }) {
   return (
     <div className="special-background" >
       <div className="misc-container">
-        <h1 className="average">{text}</h1>
+        <h1 className="garamond">{text}</h1>
         <Link to='/' className="link">
           Return to home page
         </Link>

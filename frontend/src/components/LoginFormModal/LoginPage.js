@@ -35,7 +35,7 @@ function LoginPage() {
   return (
     <div className="special-background" >
       <form onSubmit={handleSubmit} className='form-special'>
-        <h2 className="average">
+        <h2 className="garamond">
           Please Log In
         </h2>
         {errors.length > 0 && <ul className="errors">
