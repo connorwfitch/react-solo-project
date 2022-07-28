@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import parse from 'html-react-parser';
 
 // Internal modules
 import { getUserDetail } from '../../../store/user';
@@ -43,10 +44,10 @@ function UserDetail() {
               className='display-card-image'
             />
             <div className='display-card-text'>
-              <h3 className='display-card-title'>{story.title}</h3>
-              <p className='display-card-p'>
-                {story.content.length > 150 ? `${story.content.slice(0, 150)}...` : story.content}
-              </p>
+              <h2 className='display-card-title'>{story.title}</h2>
+              <div className='display-card-story'>
+                {parse(story.content)}
+              </div>
             </div>
           </Link>
         )
