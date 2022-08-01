@@ -19,26 +19,15 @@ function About() {
         </div>
         <p>
           Hi, I am Connor Fitch, a software engineer who is passionate about city design, accessibility, public transit, and climate policy.
-          Heavily inspired by the work of creators such as
-            <a href="https://www.youtube.com/c/NotJustBikes" className="link-large">
-              Not Just Bikes
-            </a>
-          and 
-            <a href="https://www.youtube.com/c/CityNerd" className="link-large">
-              CityNerd,
-            </a>
-          I decided to express this passion through my own medium -- by making a clone of
-            <a href="https://medium.com/" className="link-large">
-              Medium!
-            </a>
+          Accordingly, I admire the Netherlands for their forward thinking policies in those areas.
         </p>
         <p>
-          I chose to highlight the Netherlands in particular because I, like many others, hold their city design and public transit in very high regard.
-          Further, I have recently been devoting some time to learning Dutch on the side.
-          As a German speaker, I am delighted that I can just mispronounce everything and more or less get by!
+          I am also interested in learning other languages and have taken up Dutch as my most recent challenge.
+          Thankfully, as a German speaker, I know I can just mispronounce what I want to say in German and know
+          that I more or less got the point across!
         </p>
         <p>
-          Jokes aside, I am glad that I was able to make a project that tied together my passions for coding and city design, and I hope you enjoy using the site.
+          Jokes aside, I am glad that I was able to make a project that tied together my passions for coding, city design, and language learning. I hope you enjoy using the site!
         </p>
         <Link to='/' className="link">
           Return to home page
