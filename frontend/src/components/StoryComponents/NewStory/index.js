@@ -90,9 +90,6 @@ function NewStory() {
           <button type="submit" className="button orange">Publish</button>
         </div>
       </form>
-      <p>
-        {content}
-      </p>
     </div>
   );
 }
