@@ -29,6 +29,9 @@ Gemiddeld is a Dutch- and walkable-community-themed clone of Medium built using 
 ### Login Page
 ![Login Page](docs/login.png)
 
+### Stories Page
+![Stories Page](docs/stories.png)
+
 ### Story Page
 ![Story Page](docs/story.png)
 
@@ -52,5 +55,4 @@ Gemiddeld is a Dutch- and walkable-community-themed clone of Medium built using 
 The primary roadblock I faced during this project was considering how to architect my Redux store slices of state. I ultimately landed on having a slice of state that captures all of the stories but with a limited scope and a single entry in that slice dedicated to the most recent story to be displayed in detail that captures the story and all of its nested features, primarily comments and likes. The logic was that while it will cost some computation to load in that extra information when accessing a single story, that cost is then save when the user returns to the stories browse page because if we included nested features for every story in the primary slice of state, we would have to make that costlier call to the backend api for all of the stories.
 
 ### Future To-Dos
-* Add Phase 2 features (Likes, AWS Image Upload)
-* Add Bonus Features (Rich Text Editor, User Profile Edit/Delete)
+* Add Social-Oriented Features (User Profile Edit/Delete, Following Other Users)

@@ -6,6 +6,7 @@ import parse from 'html-react-parser';
 
 // Internal modules
 import { getUserDetail } from '../../../store/user';
+import NotFound from '../../MiscComponents/NotFound';
 
 function UserDetail() {
   const userDetail = useSelector(state => state.users.detail);
@@ -17,7 +18,7 @@ function UserDetail() {
     dispatch(getUserDetail(userDetailId));
   }, [dispatch, userDetailId]);
 
-  if(!userDetail) return null;
+  if (!userDetail) return <NotFound text='User Not Found' />;
 
   return (
     <main className='main flex-col-20'>

@@ -8,6 +8,7 @@ import "react-quill/dist/quill.snow.css";
 // Internal modules
 import { editStory, getStoryDetail } from '../../../store/story';
 import StoryDeleteModal from "../StoryDeleteModal";
+import NotFound from "../../MiscComponents/NotFound";
 
 function StoryEdit() {
   const story = useSelector(state => state.stories.detail);
@@ -31,7 +32,7 @@ function StoryEdit() {
     setContent(story ? story.content : '');
   }, [story])
 
-  if (!story) return null;
+  if (!story) return <NotFound text='Story Not Found' />;
 
   // Auth checks
   if (!user) history.push('/login');
