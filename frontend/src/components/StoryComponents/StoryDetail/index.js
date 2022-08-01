@@ -8,6 +8,7 @@ import parse from 'html-react-parser';
 import { getStoryDetail } from '../../../store/story';
 import CommentSection from '../../CommentComponents/CommentSection';
 import LikeButton from './LikeButton';
+import NotFound from '../../MiscComponents/NotFound';
 
 function StoryDetail() {
   const story = useSelector(state => state.stories.detail);
@@ -23,7 +24,7 @@ function StoryDetail() {
 
 
 
-  if(!story) return null;
+  if(!story) return <NotFound text='Story Not Found' />;
 
   let userExists = false;
   if(user) userExists = true;
